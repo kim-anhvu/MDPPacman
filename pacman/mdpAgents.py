@@ -221,7 +221,8 @@ class MDPAgent(Agent):
         ghosts = api.ghosts(state)   # Positions where value stored should not be altered.
         gamma = 0.9
         iterations = 10
-        threshold = 0.001
+        threshold = 0.01
+        convergence = False
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
 
@@ -233,9 +234,9 @@ class MDPAgent(Agent):
             5. Compare value with a set threshold - break loop set conv to false
         '''
         iterations = 10
-        while True:
+        while iterations > 0:
             U = copy.deepcopy(board_copy)
-            totalDifference = 0
+
             for row in range(height):
                 for col in range(width):
                     value = board_copy.get_value(row, col)
@@ -247,14 +248,7 @@ class MDPAgent(Agent):
                         board_copy.set_value(row, col, board.get_value(
                             row, col) + gamma * max_expected_utility)
 
-            for row in range(height):
-                for col in range(width):
-                    value = board_copy.get_value(row, col)
-                    if isinstance(value, numbers.Number) and (col, (height - 1) - row) not in ghosts:
-                        totalDifference += round(value - U.get_value(row, col), 4)
-
-            if abs(totalDifference) <= threshold:
-                break
+            iterations -= 1
 
         return board_copy
 
@@ -272,8 +266,6 @@ class MDPAgent(Agent):
         corners = api.corners(state)
         food = api.food(state)
         ghosts = api.ghosts(state)
-        ghosts_scared_time = api.ghostStatesWithTimes(state)[0][1]
-
         walls = api.walls(state)
         legal = api.legalActions(state)
         capsules = api.capsules(state)
@@ -283,14 +275,9 @@ class MDPAgent(Agent):
 
         board = self.create_board(width, height, -0.04)
         board.set_position_values(food, 1)
-
+        board.set_position_values(ghosts, -3)
         board.set_position_values(walls, 'x')
         board.set_position_values(capsules, 2)
-
-        if ghosts_scared_time > 1:
-            board.set_position_values(ghosts, -0.04)
-        else:
-            board.set_position_values(ghosts, -3)
 
         board = self.value_iteration(state, board)
         expected_utility = self.calculate_expected_utility(state, board,
@@ -299,5 +286,3 @@ class MDPAgent(Agent):
 
 # Try to change ghost reward when capsule has been eaten
 # Try to return Direction.STOP if best action is not in legal
-
-# board.set_position_values(ghosts, -3)
