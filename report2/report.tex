@@ -1,11 +1,15 @@
 \documentclass[a4paper]{report}
 
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.7in]{geometry}
 \usepackage{graphicx, verbatim, listings, fancyvrb, color, float, pdfpages}
 \usepackage[english]{babel}
 \usepackage[autostyle]{csquotes}
 \usepackage{dirtree}
 \usepackage{titling}
+\usepackage{graphicx}
+
+
+\graphicspath{ {/Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/} }
 
 \setlength{\droptitle}{-8em}   % This is your set screw
 
@@ -37,16 +41,95 @@
         \newline \newline
         To obtain the updated board with each state containing an utility value, the function calls on the value iteration function.
       \subsection*{Value Iteration}
-        `board\_copy' contains the deepcopy of the board that has been passed into the value iteration function and is the board that is used to update the utility for each state.
+        `board' will be used to obtain the original rewards for each position.
+        \newline `board\_copy' contains the deepcopy of the board that has been passed into the value iteration function and is the board that is used to update the utility for each state.
+        \newline `U' is the previous state of `board\_copy'
+        \newline
+        \newline \hspace*{1cm} \underline{Example:}
+        \newline \hspace*{1cm} You have updated the value at (x, y) in `board\_copy' and you needed the value at (x, y + 1) to do so. Now \hspace*{1cm} you need to update the value at (x, y + 1), which will need the old value of (x, y) which will be stored in `U'.
         \newline \newline
         This function iterates through `board\_copy' and checks whether or not the cell is anything but a wall or a ghost. This is done by confirming if the value stored at the cell is a number, as walls have a value of `x' (a string) and if the current position is in the list of ghost positions (`ghosts'). If the condition is satisfied, `calculate\_expected\_utility' is invoked.
         \newline \newline
         `calculate\_expected\_utility' is a function that generates the potential next position of Pacman in a list called `coords'. All lists in this function's ordering is always the same, with the position or utility associated with going north always comes first, then east, south and finally west. The `coord' list which initially contains positions is looped through and any position that is a currently occupied by a wall is replaced with the current position. \textbf{Due to this strategy, there is no need to check if the index is out of bounds.} Then, pair each position with its corresponding reward/utility. To make sure, there are more than one position for Pacman to move to, the algorithm checks if the set of the list (to remove duplicates) contains more than one element. If that condition is satisfied, the list is looped through to find the positions that are at a right angle to each coordinate.
 
-        Then, multiply the coordinate's utility/reward value by the corresponding probability.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=.45]{calculate_utility_diagram.png}
+          % \caption{Example of a parametric plot ($\sin (x), \cos(x), x$)}
+        \end{figure}
+        \begin{table}[H]
+          \begin{center}
+            \begin{tabular}{c|c|c}
+              \textbf{Intended Action} & \textbf{90$^{\circ}$ Anti-Clockwise Action} & \textbf{90$^{\circ}$ Clockwise Action}\\
+              \hline
+              North (index 0) & West (index 3) & East (index 1)\\
+              East (index 1) & North (index 0) & South (index 2)\\
+              South (index 2) & East (index 1) & West (index 3)\\
+              West (index 3) & South (index 2) & North (index 0)\\
+            \end{tabular}
+            \caption{Possible actions undertaken due to probability depending on intended action.}
+            \label{tab:table1}
+          \end{center}
+        \end{table}
+        From looking at the diagram and the table, you can now work out any possible action from an intended action using indices. To get the index of the position which is 90$^{\circ}$ anti-clockwise to the intended action, you need to add 3 to the corresponding index to your action, mod 4 and to get the position which 90$^{\circ}$ clockwise to the intended action, you need to add 1 to the corresponding index to your action, mod 4.
+        \newline \newline
+        Now that you know all coordinates that are associated when making a certain move, you multiply the value of the position that you will end up when making the intended action by 0.8 and the value of the positions if you make an action 90$^{\circ}$ to the intended action by 0.1. After, place the sum of the values in a tuple with the intended action and add it to the `prob' list. When calculations are done for all possible actions, return the `prob' list.
+        \begin{table}[H]
+          \begin{center}
+            \begin{tabular}{c|c|c}
+              \textbf{Board} & \textbf{Win Rate} & \textbf{Average Win Rate (\%)} \\
+              \hline
+              SMALL GRID & 377/500 & 75.4\\
+              MEDIUM CLASSIC & 279/500 & 55.8\\
+            \end{tabular}
+            \caption{Win rate for the two boards. Used set amount of iterations (10) \& $\gamma$ = 0.9.}
+            \label{tab:table2}
+          \end{center}
+        \end{table}
 
+        \begin{table}[h!]
+          \begin{center}
+            \begin{tabular}{c|c|c}
+              \textbf{Board} & \textbf{Win Rate} & \textbf{Average Win Rate (\%)} \\
+              \hline
+              SMALL GRID & 382/500 & 76.4\\
+              MEDIUM CLASSIC & 279/500 & 55.8\\
+            \end{tabular}
+            \caption{Win rate for the two boards. Used a threshold of 0.01 \& $\gamma$ = 0.9.}
+            \label{tab:table3}
+          \end{center}
+        \end{table}
 
+        \begin{table}[h!]
+          \begin{center}
+            \begin{tabular}{c|c}
+              \textbf{} & \textbf{Average Win Rate (\%)} \\
+              \hline
+              WITHOUT THRESHOLD & 57.2\\
+              WITH THRESHOLD & 60\\
+            \end{tabular}
+            \caption{Win rate when causing ghosts' rewards to be -0.04 when scared and -3 when not scared. 10 iterations \& $\gamma$ = 0.9.}
+            \label{tab:table4}
+          \end{center}
+        \end{table}
+The choice was to keep the ghosts' rewards constant throughout the game was made due to the fact that it takes a shorter time to compute the final action to take and on average, the win rate is high compared to tailoring the ghosts' rewards based on if they were scared or not.
 
+        \begin{table}[h!]
+          \begin{center}
+            \begin{tabular}{c|c|c}
+              \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Medium Classic Win Rate (\%)}\\
+              \hline
+              10 & 75.4 & 55.8\\
+              14 & 74.8 & 0\\
+              15 & 78.6 & 57.6\\
+              16 & 77.8 & 0\\
+              17 & 74.4 & 0\\
+              20 & 75.2 & 61\\
+            \end{tabular}
+            \caption{Finding optimum number of iterations which results in highest win rate. For each iteration, the game was run 500 times \& $\gamma$ = 0.9.}
+            \label{tab:table5}
+          \end{center}
+        \end{table}
   \section*{Performance Analysis}
 
 

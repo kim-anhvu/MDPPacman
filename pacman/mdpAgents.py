@@ -60,9 +60,9 @@ class Board:
                board ([int][int]): 2D array which each cell will hold a reward/utility.
                                    Populates every grid with default_reward initially.
         """
-        self.width = width
-        self.height = height
-        self.board = [[default_reward for x in range(self.width)] for y in range(self.height)]
+        self.__width = width
+        self.__height = height
+        self.board = [[default_reward for x in range(self.__width)] for y in range(self.__height)]
 
     def get_board_width(self):
         """
@@ -71,7 +71,7 @@ class Board:
             Returns:
                 int: A number that represent number of columns of the board.
         """
-        return self.width
+        return self.__width
 
     def get_board_height(self):
         """
@@ -80,9 +80,9 @@ class Board:
             Returns:
                 int: A number that represent number of rows of the board.
         """
-        return self.height
+        return self.__height
 
-    def set_value(self, row, col, value):
+    def __setitem__(self, (row, col), value):
         """
             The function to set a value to a specific position on the board.
 
@@ -94,7 +94,23 @@ class Board:
             Returns:
                 None
         """
-        self.board[row][col] = value
+        self.board[int(row)][int(col)] = value
+
+    def __getitem__(self, (row, col)):
+        """
+            The function to get a value at a specific position on the board.
+
+            Parameters:
+                row (int): Row number of chosen position.
+                col (int): Column number of chosen position.
+
+            Returns:
+                int: Value stored at specified position.
+        """
+        return self.board[row][col]
+
+    def convert_x(self, x):
+        return abs(x - (self.__height - 1))
 
     def set_position_values(self, positions, value):
         """
@@ -109,20 +125,7 @@ class Board:
                 None
         """
         for position in positions:
-            self.board[int(abs(position[1] - (self.height - 1)))][int(position[0])] = value
-
-    def get_value(self, row, col):
-        """
-            The function to get a value at a specific position on the board.
-
-            Parameters:
-                row (int): Row number of chosen position.
-                col (int): Column number of chosen position.
-
-            Returns:
-                int: Value stored at specified position.
-        """
-        return self.board[row][col]
+            self.board[self.convert_x(position[1])][int(position[0])] = value
 
 
 class MDPAgent(Agent):
@@ -183,13 +186,13 @@ class MDPAgent(Agent):
         prob = [(0, Directions.NORTH), (0, Directions.EAST),
                 (0, Directions.SOUTH), (0, Directions.WEST)]
 
-        for num in range(len(coord)):
+        for i, (c, r) in enumerate(coord):
             # Loop through coord list to check if it is not a wall. If it is,
             # replace the position with the current position.
-            if not isinstance(board.get_value(coord[num][1], coord[num][0]), numbers.Number):
-                coord[num] = (col, row)
+            if not isinstance(board[r, c], numbers.Number):
+                coord[i] = (col, row)
             # For each element in coord, pair element with corresponding reward in a tuple.
-            coord[num] = (coord[num], board.get_value(coord[num][1], coord[num][0]))
+            coord[i] = (coord[i], board[coord[i][1], coord[i][0]])
 
         if len(set(coord)) > 1:
             # Checks that there are more than one position for Pacman to move to.
@@ -197,11 +200,9 @@ class MDPAgent(Agent):
                 # Algorithm that loops through coord to identify positions that are at a
                 # right angle to current position and multiplies the corresponding
                 # reward/utility to the right probability.
-                aclockwise_right_angle = i - 1
+                aclockwise_right_angle = (i + 3) % 4
                 clockwise_right_angle = (i + 1) % 4
 
-                if aclockwise_right_angle < 0:
-                    aclockwise_right_angle = 3
                 prob[i] = ((0.8 * coord[i][1]) +
                            (0.1 * coord[clockwise_right_angle][1]) +
                            (0.1 * coord[aclockwise_right_angle][1]), prob[i][1])
@@ -226,29 +227,31 @@ class MDPAgent(Agent):
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
 
-        '''
-            1. Set threshold
-            2. while convergence True
-            3. List of difference between future board and present board
-            4. Calculate the sum of differnce
-            5. Compare value with a set threshold - break loop set conv to false
-        '''
-        iterations = 10
+        iterations = 15
         while iterations > 0:
+            # while True:
             U = copy.deepcopy(board_copy)
-
+            totalDifference = 0
             for row in range(height):
                 for col in range(width):
-                    value = board_copy.get_value(row, col)
+                    value = board_copy[row, col]
                     if isinstance(value, numbers.Number) and (col, (height - 1) - row) not in ghosts:
                         # Check to make sure this position is not where a wall or a ghost is.
                         expected_utility = [utility[0] for utility in self.calculate_expected_utility(
                             state, U, row, col)]
                         max_expected_utility = max(expected_utility)
-                        board_copy.set_value(row, col, board.get_value(
-                            row, col) + gamma * max_expected_utility)
+                        board_copy[row, col] = board[row, col] + gamma * max_expected_utility
 
             iterations -= 1
+
+            # for row in range(height):
+            #     for col in range(width):
+            #         value = board[row, col]
+            #         if isinstance(value, numbers.Number) and (col, (height - 1) - row) not in ghosts:
+            #             totalDifference += round(value - U[row, col], 4)
+            #
+            # if abs(totalDifference) <= threshold:
+            #     break
 
         return board_copy
 
@@ -275,7 +278,14 @@ class MDPAgent(Agent):
 
         board = self.create_board(width, height, -0.04)
         board.set_position_values(food, 1)
-        board.set_position_values(ghosts, -3)
+        # board.set_position_values(ghosts, -3)
+        for x, y in ghosts:
+            x_coordinates = [x - 1, x, x + 1]
+            y_coordinates = [y - 1, y, y + 1]
+            for x_coord in x_coordinates:
+                for y_coord in y_coordinates:
+                    if (x_coord, y_coord) is not current_pos:
+                        board[y_coord, board.convert_x(x_coord)] = -2
         board.set_position_values(walls, 'x')
         board.set_position_values(capsules, 2)
 

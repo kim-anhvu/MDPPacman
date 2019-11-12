@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1573072705 "report.tex" "report.pdf" "report" 1573072705
+["pdflatex"] 1573347964 "report.tex" "report.pdf" "report" 1573347965
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1480098701 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -16,9 +16,11 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm" 1480098701 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1480098733 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1480098733 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1480098733 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1480098733 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1480098733 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1480098733 32362 179c33bbf43f19adbb3825bb4e36e57a ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1480098733 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1480098733 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
   "/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1480098806 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2017/texmf-dist/tex/generic/babel-english/english.ldf" 1485295264 7008 fd11ed3b832df052a4adb2c56e472748 ""
@@ -74,8 +76,9 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1518084397 4129591 24105409e69a9cf71d048c3891891dd3 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "report.aux" 1573072705 166 db7e845c9605d9d9013124913d023cfd ""
-  "report.tex" 1573072705 5442 09a634232f2630e0d8e162bac99117c6 ""
+  "images/calculate_utility_diagram.png" 1573231623 43373 2f45934bdcd565c45983238127317bb5 ""
+  "report.aux" 1573347965 1185 82a379d7efd9e7854a38ba69f8f7b1a5 ""
+  "report.tex" 1573347964 10181 073e384b0603e87eaace9bf608f95920 ""
   (generated)
   "report.aux"
   "report.pdf"

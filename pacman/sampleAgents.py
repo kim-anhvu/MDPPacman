@@ -125,20 +125,3 @@ class SensingAgent(Agent):
         # getAction has to return a move. Here we pass "STOP" to the
         # API to ask Pacman to stay where they are.
         return api.makeMove(Directions.STOP, legal)
-
-# Bellman equation
-# Each state has a utility
-# Each state has a reward
-# y = discount factor
-# nextStates = []
-# for all possible states:
-#     nextstates.append(probability of getting to next state for particular action * utility of next state)
-
-
-# y * max(nextStates) + reward = utility
-# utility = []
-# states = []
-# for i in range(0, len(states)):
-#     state.utility = 0 use a dictionary?
-# copyUtility = state.utility
-# for state
