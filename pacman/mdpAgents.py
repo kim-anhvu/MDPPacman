@@ -65,6 +65,8 @@ class Board:
     def get_board_width(self):
         """
             The function to get width of the board/layout.
+            Parameters:
+                None
             Returns:
                 int: A number that represent number of columns of the board.
         """
@@ -73,6 +75,8 @@ class Board:
     def get_board_height(self):
         """
             The function to get height of the board/layout.
+            Parameters:
+                None
             Returns:
                 int: A number that represent number of rows of the board.
         """
@@ -103,6 +107,17 @@ class Board:
         return self.board[row][col]
 
     def convert_y(self, y):
+        """
+            The board's (represented using nested lists) 'y' coordinates start from the top
+            and end at the bottom. So the top row is row 0. This is the opposite for the
+            actual layout grid. This function is to be able to convert the y coordinate from
+            a board to the y coordinate on the layout grid.
+            Parameters:
+                y (int): y value of board/grid layout
+
+            Returns:
+                int: converted y value of grid layout/board
+        """
         return self.__height - 1 - y
 
     def set_position_values(self, positions, value):
@@ -192,38 +207,38 @@ class MDPAgent(Agent):
                 Board: Board with updated utility values stored in each cell of board.
         """
         board_copy = copy.deepcopy(board)
-        ghosts = api.ghosts(state)   # Positions where value stored should not be altered.
-        gamma = 0.9
-        iterations = 10
+        # Positions where value stored should not be altered.
+        protected_pos = api.ghosts(state) + api.walls(state)
+        gamma = 0.9  # discount value
+        iterations = 15
         threshold = 0.01
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
 
-        iterations = 15
         while iterations > 0:
-            # while True:
             U = copy.deepcopy(board_copy)
             totalDifference = 0
             for row in range(height):
                 for col in range(width):
                     value = board_copy[row, col]
-                    if isinstance(value, numbers.Number) and (col, height - 1 - row) not in ghosts:
+                    if (col, board.convert_y(row)) not in protected_pos:
                         # Check to make sure this position is not where a wall or a ghost is.
                         expected_utility = [utility[0] for utility in self.calculate_expected_utility(
                             state, U, row, col)]
                         max_expected_utility = max(expected_utility)
                         board_copy[row, col] = board[row, col] + gamma * max_expected_utility
 
-            iterations -= 1
+            for row in range(height):
+                for col in range(width):
+                    value = board_copy[row, col]
+                    if (col, board.convert_y(row)) not in protected_pos:
+                        totalDifference += round(value - U[row, col], 4)
 
-            # for row in range(height):
-            #     for col in range(width):
-            #         value = board[row, col]
-            #         if isinstance(value, numbers.Number) and (col, (height - 1) - row) not in ghosts:
-            #             totalDifference += round(value - U[row, col], 4)
-            #
-            # if abs(totalDifference) <= threshold:
-            #     break
+            if abs(totalDifference) <= threshold:
+                print "BREAK!"
+                break
+
+            iterations -= 1
 
         return board_copy
 
@@ -262,12 +277,7 @@ class MDPAgent(Agent):
                 for y_coord in y_coordinates:
 
                     if (x_coord, y_coord) not in protected_pos:
-                        # board[int(board.convert_y(y_coord)), int(x_coord)] = -2
-                        if int(board.convert_y(y_coord)) < 0 and int(board.convert_y(y_coord)) > 10:
-                            print "OUT OF BOUNDS Y ", y_coord
-
-                        if int(x_coord) < 0 and int(x_coord) > 19:
-                            print "OUT OF BOUNDS X ", x_coord
+                        board[int(board.convert_y(y_coord)), int(x_coord)] = -2
 
         board = self.value_iteration(state, board)
         expected_utility = self.calculate_expected_utility(state, board,
