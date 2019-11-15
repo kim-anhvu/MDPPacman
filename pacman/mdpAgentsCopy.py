@@ -43,6 +43,7 @@ import copy
 class Board:
     """
         This is a class for recreating the game layout using 2D array.
+
         Attributes:
             width (int): The width of the layout board.
             height (int): The height of the layout board.
@@ -52,6 +53,7 @@ class Board:
     def __init__(self, width, height, default_reward):
         """
             The constructor for the Board class.
+
             Parameters:
                width (int): The width of the layout board.
                height (int): The height of the layout board.
@@ -60,11 +62,13 @@ class Board:
         """
         self.__width = width
         self.__height = height
-        self.board = [[default_reward for x in range(self.__width)] for y in range(self.__height)]
+        self.board = [[default_reward for x in range(
+            self.__width)] for y in range(self.__height)]
 
     def get_board_width(self):
         """
             The function to get width of the board/layout.
+
             Returns:
                 int: A number that represent number of columns of the board.
         """
@@ -73,6 +77,7 @@ class Board:
     def get_board_height(self):
         """
             The function to get height of the board/layout.
+
             Returns:
                 int: A number that represent number of rows of the board.
         """
@@ -81,26 +86,29 @@ class Board:
     def __setitem__(self, (row, col), value):
         """
             The function to set a value to a specific position on the board.
+
             Parameters:
                 row (int): Row number of chosen position.
                 col (int): Column number of chosen position.
                 value (int): Number to set to the position.
+
             Returns:
                 None
         """
-        self.board[row][col] = value
+        self.board[int(row)][int(col)] = value
 
     def __getitem__(self, (row, col)):
         """
             The function to get a value at a specific position on the board.
+
             Parameters:
                 row (int): Row number of chosen position.
                 col (int): Column number of chosen position.
+
             Returns:
                 int: Value stored at specified position.
         """
-
-        return self.board[row][col]
+        return self.board[int(row)][int(col)]
 
     def convert_y(self, y):
         return self.__height - 1 - y
@@ -108,18 +116,21 @@ class Board:
     def set_position_values(self, positions, value):
         """
             The function to set a value to each position from list of positions.
+
             Parameters:
                 positions ([(int, int)]): List of positions used to assign value to each
                                           position.
                 value (int): Number to set to each position.
+
             Returns:
                 None
         """
         for position in positions:
-            self.board[int(self.convert_y(position[1]))][int(position[0])] = value
+            self.board[int(self.convert_y(position[1]))
+                       ][int(position[0])] = value
 
 
-class MDPAgent(Agent):
+class MDPAgentCopy(Agent):
 
     """
         This is a class to control Pacman using a MDP-solver.
@@ -129,14 +140,27 @@ class MDPAgent(Agent):
     def __init__(self):
         name = "Pacman"
 
+    # Gets run after an MDPAgent object is created and once there is
+    # game state to access.
+    # def registerInitialState(self, state):
+        # print("Running registerInitialState for MDPAgent!")
+        # print("I'm at:")
+        # print(str(api.whereAmI(state)))
+
+        # This is what gets run in between multiple games
+        # def final(self, state):
+        # print("Looks like the game just ended!")
+
     def create_board(self, width, height, default_reward):
         """
             The function to create a Board object.
+
             Parameters:
                 width (int): To create a board of this width.
                 height (int): To create a board of this height.
                 default_reward (float): Chosen number to initially populate every cell
                                         of the board.
+
             Returns:
                 Board: A board of the width and height specified, which is populated with
                        the default_reward.
@@ -147,10 +171,12 @@ class MDPAgent(Agent):
         """
             The function to calculate expected utility for a specified position on the
             board.
+
             Parameters:
                 board (Board): Chosen board to use.
                 row (int): Row number of chosen position.
                 col (int): Column number of chosen position.
+
             Returns:
                 [(float, Directions)]: List of tuples of size 4, which contains a
                                        utility value and its corresponding action.
@@ -186,16 +212,20 @@ class MDPAgent(Agent):
     def value_iteration(self, state, board):
         """
             The function to carry out value iteration.
+
             Parameters:
                 board (Board): Chosen board to use.
+
             Returns:
                 Board: Board with updated utility values stored in each cell of board.
         """
         board_copy = copy.deepcopy(board)
-        ghosts = api.ghosts(state)   # Positions where value stored should not be altered.
+        # Positions where value stored should not be altered.
+        ghosts = api.ghosts(state)
         gamma = 0.9
         iterations = 10
         threshold = 0.01
+        convergence = False
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
 
@@ -207,12 +237,13 @@ class MDPAgent(Agent):
             for row in range(height):
                 for col in range(width):
                     value = board_copy[row, col]
-                    if isinstance(value, numbers.Number) and (col, height - 1 - row) not in ghosts:
+                    if isinstance(value, numbers.Number) and (col, (height - 1) - row) not in ghosts:
                         # Check to make sure this position is not where a wall or a ghost is.
                         expected_utility = [utility[0] for utility in self.calculate_expected_utility(
                             state, U, row, col)]
                         max_expected_utility = max(expected_utility)
-                        board_copy[row, col] = board[row, col] + gamma * max_expected_utility
+                        board_copy[row, col] = board[row, col] + \
+                            gamma * max_expected_utility
 
             iterations -= 1
 
@@ -230,8 +261,10 @@ class MDPAgent(Agent):
     def getAction(self, state):
         """
             The function to work out next intended action carried out.
+
             Parameters:
                 None
+
             Returns:
                 Directions: Intended action that Pacman will carry out.
         """
@@ -239,38 +272,47 @@ class MDPAgent(Agent):
         corners = api.corners(state)
         food = api.food(state)
         ghosts = api.ghosts(state)
+        ghost_scared_time = api.ghostStatesWithTimes(state)[0][1]
         walls = api.walls(state)
         legal = api.legalActions(state)
         capsules = api.capsules(state)
+        protected_coords = walls + ghosts + [current_pos]
 
         width = max(corners)[0] + 1
         height = max(corners, key=itemgetter(1))[1] + 1
 
         board = self.create_board(width, height, -0.04)
+        board.set_position_values(food, 1)
         board.set_position_values(walls, 'x')
         board.set_position_values(capsules, 2)
-        board.set_position_values(food, 1)
-        board.set_position_values(ghosts, -3)
-        protected_pos = set(ghosts + walls + [current_pos])
 
-        int_ghosts = [(int(x), int(y)) for x, y in ghosts]
-        for x, y in int_ghosts:
+        if ghost_scared_time < 5:
+            board.set_position_values(ghosts, -3)
 
-            x_coordinates = [x - 1, x, x + 1]
-            y_coordinates = [y - 1, y, y + 1]
-            for x_coord in x_coordinates:
-                for y_coord in y_coordinates:
+            # for i in range(height):
+            #     for j in range(width):
+            #         print board[i, j],
+            #     print
+            # print
+            print "GHOST LIST: ", ghosts
+            for x, y in ghosts:
+                # set the surrounding area around the ghost to half the reward of the ghost
+                # avoids changing the reward of the ghost itself, the pacman and the walls
+                # print "GHOST Coordinates: " + str(x) + " " + str(y)
+                x_coordinates = [x - 1, x, x + 1]
+                y_coordinates = [y - 1, y, y + 1]
+                # print "X/Y Coordinates: " + str(x_coordinates) + " " + str(y_coordinates)
+                for x_coord in x_coordinates:
+                    for y_coord in y_coordinates:
+                        if (x_coord, y_coord) not in protected_coords:
+                            # print("index: " + str((board.convert_y(y_coord), x_coord)))
+                            converted_y = board.convert_y(y_coord)
+                            # print "VALUE: " + str(board[board.convert_y(y), x])
+                            board[converted_y, x_coord] = board[board.convert_y(y), x] / 2
+                            # print "VALUE PART 2: " + str(board[converted_y, x_coord])
 
-                    if (x_coord, y_coord) not in protected_pos:
-                        # board[int(board.convert_y(y_coord)), int(x_coord)] = -2
-                        if int(board.convert_y(y_coord)) < 0 and int(board.convert_y(y_coord)) > 10:
-                            print "OUT OF BOUNDS Y ", y_coord
-
-                        if int(x_coord) < 0 and int(x_coord) > 19:
-                            print "OUT OF BOUNDS X ", x_coord
-
-        board = self.value_iteration(state, board)
-        expected_utility = self.calculate_expected_utility(state, board,
+        board=self.value_iteration(state, board)
+        expected_utility=self.calculate_expected_utility(state, board,
                                                            abs(current_pos[1] - (height - 1)), current_pos[0])
         return max([(utility, action) for utility, action in expected_utility if action in legal])[1]
 
