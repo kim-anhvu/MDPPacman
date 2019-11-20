@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  10 NOV 2019 01:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  20 NOV 2019 20:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -9,8 +9,8 @@ LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -271,27 +271,27 @@ LaTeX Font Info:    ... okay on input line 24.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: a4paper
+* paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(50.58878pt, 496.33032pt, 50.58878pt)
-* v-part:(T,H,B)=(50.58878pt, 743.8693pt, 50.58878pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=496.33032pt
-* \textheight=743.8693pt
+* h-part:(L,W,R)=(50.58878pt, 513.11745pt, 50.58878pt)
+* v-part:(T,H,B)=(50.58878pt, 693.79243pt, 50.58878pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=513.11745pt
+* \textheight=693.79243pt
 * \oddsidemargin=-21.68121pt
 * \evensidemargin=-21.68121pt
 * \topmargin=-58.68121pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -372,89 +372,139 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 27.
+(Font)              <14.4> on input line 27.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 27.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 27.
+(Font)              <7> on input line 27.
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
+Underfull \hbox (badness 10000) in paragraph at lines 37--46
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
+Underfull \hbox (badness 10000) in paragraph at lines 37--46
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
+Underfull \hbox (badness 10000) in paragraph at lines 37--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--46
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
+(Font)              <12> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
+(Font)              <8> on input line 52.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 52.
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--54
+Underfull \hbox (badness 10000) in paragraph at lines 48--58
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--54
+Underfull \hbox (badness 10000) in paragraph at lines 48--58
 
  []
 
 
+Overfull \hbox (7.70241pt too wide) in paragraph at lines 48--58
+\OT1/cmr/m/n/12 This func-tion it-er-ates through `board[]copy' for max-i-mum o
+f 15 times, re-sets the vari-able to-tal[]difference
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--58
+
+ []
+
+[1]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_uti
-lity_diagram.png, id=9, 532.48938pt x 398.99063pt>
+lity_diagram.png, id=13, 532.48938pt x 398.99063pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculat
 e_utility_diagram.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate
 _utility_diagram.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/calculate_utility_diagram.png used on input line 57.
+rt2/images/calculate_utility_diagram.png used on input line 61.
 (pdftex.def)             Requested size: 239.61801pt x 179.54411pt.
- [1]
-Underfull \hbox (badness 10000) in paragraph at lines 74--88
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--85
 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 78--85
+
+ []
+
+
+Overfull \hbox (47.11671pt too wide) in paragraph at lines 78--85
+\OT1/cmr/m/n/12 The `value[]iteration' only takes the first el-e-ment of each t
+u-ple in the list re-turned by `cal-cu-late[]expected[]utility',
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--85
+
+ []
 
 [2 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_
-utility_diagram.png>] [3] (./report.aux) ) 
+utility_diagram.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+ [3]
+</Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_gr
+aph.png, id=24, 602.25pt x 372.39125pt>
+File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteratio
+ns_graph.png Graphic file (type png)
+
+<use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
+s_graph.png>
+Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
+rt2/images/iterations_graph.png used on input line 123.
+(pdftex.def)             Requested size: 271.01pt x 167.57451pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations
+_graph.png>] [5] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 5874 strings out of 492995
- 87157 string characters out of 6132705
- 185061 words of memory out of 5000000
- 9335 multiletter control sequences out of 15000+600000
- 8064 words of font info for 29 fonts, out of 8000000 for 9000
+ 5900 strings out of 492995
+ 87910 string characters out of 6132705
+ 184145 words of memory out of 5000000
+ 9358 multiletter control sequences out of 15000+600000
+ 8977 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,10n,32p,947b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (4 pages, 122189 bytes).
+ 39i,10n,32p,864b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (6 pages, 123121 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 56 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

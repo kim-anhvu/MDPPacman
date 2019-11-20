@@ -30,7 +30,6 @@
 
 from pacman import Directions
 from game import Agent
-from collections import defaultdict
 from operator import itemgetter
 import api
 import random
@@ -183,20 +182,19 @@ class MDPAgent(Agent):
                 coord[i] = (col, row)
             # For each element in coord, pair element with corresponding reward in a tuple.
             coord[i] = (coord[i], board[coord[i][1], coord[i][0]])
+        # probably delete this
 
-        if len(set(coord)) > 1:
-            # Checks that there are more than one position for Pacman to move to.
-            for i in range(len(coord)):
-                # Algorithm that loops through coord to identify positions that are at a
-                # right angle to current position and multiplies the corresponding
-                # reward/utility to the right probability.
-                aclockwise_right_angle = (i + 3) % 4
-                clockwise_right_angle = (i + 1) % 4
+        for i in range(len(coord)):
+            # Algorithm that loops through coord to identify positions that are at a
+            # right angle to current position and multiplies the corresponding
+            # reward/utility to the right probability.
+            aclockwise_right_angle = (i + len(coord) - 1) % len(coord)
+            clockwise_right_angle = (i + 1) % len(coord)
 
-                prob[i] = ((0.8 * coord[i][1]) +
-                           (0.1 * coord[clockwise_right_angle][1]) +
-                           (0.1 * coord[aclockwise_right_angle][1]), prob[i][1])
-            return prob
+            prob[i] = ((0.8 * coord[i][1]) +
+                       (0.1 * coord[clockwise_right_angle][1]) +
+                       (0.1 * coord[aclockwise_right_angle][1]), prob[i][1])
+        return prob
 
     def value_iteration(self, state, board):
         """
@@ -209,34 +207,38 @@ class MDPAgent(Agent):
         board_copy = copy.deepcopy(board)
         # Positions where value stored should not be altered.
         protected_pos = api.ghosts(state) + api.walls(state)
-        gamma = 0.9  # discount value
-        iterations = 15
+        gamma = 0.9     # discount value
+        iterations = 19     # max number of iterations
         threshold = 0.01
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
 
         while iterations > 0:
             U = copy.deepcopy(board_copy)
-            totalDifference = 0
+            # total differences between previous board and new board which has been made at the end of the iteration
+            total_difference = 0
+
             for row in range(height):
                 for col in range(width):
                     value = board_copy[row, col]
+                    # Check to make sure this position is not where a wall or a ghost is.
                     if (col, board.convert_y(row)) not in protected_pos:
-                        # Check to make sure this position is not where a wall or a ghost is.
+                        # just take the utility from the list returned by calculate_expected_utility
                         expected_utility = [utility[0] for utility in self.calculate_expected_utility(
                             state, U, row, col)]
                         max_expected_utility = max(expected_utility)
-                        board_copy[row, col] = board[row, col] + gamma * max_expected_utility
+                        board_copy[row, col] = board[row, col] + gamma * \
+                            max_expected_utility  # Bellman's equation
 
-            for row in range(height):
-                for col in range(width):
-                    value = board_copy[row, col]
-                    if (col, board.convert_y(row)) not in protected_pos:
-                        totalDifference += round(value - U[row, col], 4)
-
-            if abs(totalDifference) <= threshold:
-                print "BREAK!"
-                break
+            # calculate differences for each position using the old board (U) and new board (board_copy)
+            # for row in range(height):
+            #     for col in range(width):
+            #         value = board_copy[row, col]
+            #         if (col, board.convert_y(row)) not in protected_pos:
+            #             total_difference += abs(round(value - U[row, col], 4))
+            #
+            # if total_difference <= threshold:
+            #     break
 
             iterations -= 1
 
@@ -258,30 +260,38 @@ class MDPAgent(Agent):
         legal = api.legalActions(state)
         capsules = api.capsules(state)
 
-        width = max(corners)[0] + 1
-        height = max(corners, key=itemgetter(1))[1] + 1
+        width = max(corners)[0] + 1  # max x coordinate + 1
+        height = max(corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
 
         board = self.create_board(width, height, -0.04)
         board.set_position_values(walls, 'x')
         board.set_position_values(capsules, 2)
         board.set_position_values(food, 1)
         board.set_position_values(ghosts, -3)
+
+        # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + walls + [current_pos])
 
+        # make sure all ghost coordinates are ints rather than floats
         int_ghosts = [(int(x), int(y)) for x, y in ghosts]
-        for x, y in int_ghosts:
 
+        for x, y in int_ghosts:
+            # possible x coordinates that positions around the ghost can have
             x_coordinates = [x - 1, x, x + 1]
+            # possible y coordinates that positions around the ghost can have
             y_coordinates = [y - 1, y, y + 1]
+
             for x_coord in x_coordinates:
                 for y_coord in y_coordinates:
-
                     if (x_coord, y_coord) not in protected_pos:
+                        # set the reward value to -2.
                         board[int(board.convert_y(y_coord)), int(x_coord)] = -2
 
         board = self.value_iteration(state, board)
-        expected_utility = self.calculate_expected_utility(state, board,
-                                                           abs(current_pos[1] - (height - 1)), current_pos[0])
+
+        expected_utility = self.calculate_expected_utility(
+            state, board, board.convert_y(current_pos[1]), current_pos[0])
+        # returns action associated to the max utility out of all the legal actions.
         return max([(utility, action) for utility, action in expected_utility if action in legal])[1]
 
 # Try to change ghost reward when capsule has been eaten
