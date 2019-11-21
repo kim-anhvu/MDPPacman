@@ -208,7 +208,7 @@ class MDPAgent(Agent):
         # Positions where value stored should not be altered.
         protected_pos = api.ghosts(state) + api.walls(state)
         gamma = 0.9     # discount value
-        iterations = 19     # max number of iterations
+        iterations = 7     # max number of iterations
         threshold = 0.01
         height = board_copy.get_board_height()
         width = board_copy.get_board_width()
@@ -292,7 +292,7 @@ class MDPAgent(Agent):
         expected_utility = self.calculate_expected_utility(
             state, board, board.convert_y(current_pos[1]), current_pos[0])
         # returns action associated to the max utility out of all the legal actions.
-        return max([(utility, action) for utility, action in expected_utility if action in legal])[1]
+        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
 
 # Try to change ghost reward when capsule has been eaten
 # Try to return Direction.STOP if best action is not in legal
