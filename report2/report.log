@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  20 NOV 2019 20:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  23 NOV 2019 23:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -248,24 +248,81 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmargin=\skip47
 \droptitle=\skip48
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2017/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks24
+\XKV@tempa@toks=\toks25
+)
+\XKV@depth=\count120
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box33
+)
+\tc@llx=\dimen132
+\tc@lly=\dimen133
+\tc@urx=\dimen134
+\tc@ury=\dimen135
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen136
+\adjbox@Height=\dimen137
+\adjbox@Depth=\dimen138
+\adjbox@Totalheight=\dimen139
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count121
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box34
+\sift@deathcycles=\count122
+\@vwid@loff=\dimen140
+\@vwid@roff=\dimen141
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 
-(./report.aux)
+(./report.aux
+
+LaTeX Warning: Label `tab:table5' multiply defined.
+
+
+LaTeX Warning: Label `tab:table5' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -303,17 +360,17 @@ LaTeX Font Info:    ... okay on input line 24.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen132
-\scratchbox=\box33
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen133
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count123
+\scratchdimen=\dimen142
+\scratchbox=\box35
+\nofMPsegments=\count124
+\nofMParguments=\count125
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count126
+\MPscratchDim=\dimen143
+\MPnumerator=\count127
+\makeMPintoPDFobject=\count128
+\everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -360,8 +417,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count126
-\AtBeginShipoutBox=\box34
+\c@lstlisting=\count129
+\AtBeginShipoutBox=\box36
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -372,55 +429,55 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 27.
+(Font)              <14.4> on input line 28.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 27.
+(Font)              <7> on input line 28.
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 37--46
+Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--46
+Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--46
+Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--46
+Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 52.
+(Font)              <12> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 52.
+(Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 52.
+(Font)              <6> on input line 53.
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--58
+Underfull \hbox (badness 10000) in paragraph at lines 49--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--58
+Underfull \hbox (badness 10000) in paragraph at lines 49--59
 
  []
 
 
-Overfull \hbox (7.70241pt too wide) in paragraph at lines 48--58
+Overfull \hbox (7.70241pt too wide) in paragraph at lines 49--59
 \OT1/cmr/m/n/12 This func-tion it-er-ates through `board[]copy' for max-i-mum o
 f 15 times, re-sets the vari-able to-tal[]difference
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--58
+Underfull \hbox (badness 10000) in paragraph at lines 49--59
 
  []
 
@@ -433,38 +490,38 @@ e_utility_diagram.png Graphic file (type png)
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate
 _utility_diagram.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/calculate_utility_diagram.png used on input line 61.
+rt2/images/calculate_utility_diagram.png used on input line 62.
 (pdftex.def)             Requested size: 239.61801pt x 179.54411pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--85
+Underfull \hbox (badness 10000) in paragraph at lines 79--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--85
+Underfull \hbox (badness 10000) in paragraph at lines 79--86
 
  []
 
 
-Overfull \hbox (47.11671pt too wide) in paragraph at lines 78--85
+Overfull \hbox (47.11671pt too wide) in paragraph at lines 79--86
 \OT1/cmr/m/n/12 The `value[]iteration' only takes the first el-e-ment of each t
 u-ple in the list re-turned by `cal-cu-late[]expected[]utility',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--85
+Underfull \hbox (badness 10000) in paragraph at lines 79--86
 
  []
 
 [2 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_
 utility_diagram.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 89.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 89.
  [3]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_gr
 aph.png, id=24, 602.25pt x 372.39125pt>
@@ -474,37 +531,40 @@ ns_graph.png Graphic file (type png)
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
 s_graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/iterations_graph.png used on input line 123.
-(pdftex.def)             Requested size: 271.01pt x 167.57451pt.
+rt2/images/iterations_graph.png used on input line 126.
+(pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
+ [4 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
+s_graph.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[5] [6] (./report.aux)
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: There were multiply-defined labels.
 
-[4 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations
-_graph.png>] [5] (./report.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 5900 strings out of 492995
- 87910 string characters out of 6132705
- 184145 words of memory out of 5000000
- 9358 multiletter control sequences out of 15000+600000
+ 6627 strings out of 492995
+ 99831 string characters out of 6132705
+ 211957 words of memory out of 5000000
+ 10050 multiletter control sequences out of 15000+600000
  8977 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,10n,32p,864b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (6 pages, 123121 bytes).
+ 39i,10n,37p,864b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (7 pages, 130791 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

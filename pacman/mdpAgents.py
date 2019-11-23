@@ -37,6 +37,7 @@ import game
 import util
 import numbers
 import copy
+import math
 
 
 class Board:
@@ -143,19 +144,19 @@ class MDPAgent(Agent):
     def __init__(self):
         name = "Pacman"
 
-    def create_board(self, width, height, default_reward):
-        """
-            The function to create a Board object.
-            Parameters:
-                width (int): To create a board of this width.
-                height (int): To create a board of this height.
-                default_reward (float): Chosen number to initially populate every cell
-                                        of the board.
-            Returns:
-                Board: A board of the width and height specified, which is populated with
-                       the default_reward.
-        """
-        return Board(width, height, default_reward)
+    def registerInitialState(self, state):
+        self.food_count = len(api.food(state))
+        self.corners = api.corners(state)
+        self.width = max(self.corners)[0] + 1  # max x coordinate + 1
+        self.height = max(self.corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
+        self.walls = api.walls(state)
+
+    # def update_multiplier(self, state):
+    #     food_count = len(api.food(state))
+    #
+    #     if food_count <= math.floor(self.food_count / 2):
+    #         self.multiplier += 1
+    #         self.food_count = food_count
 
     def calculate_expected_utility(self, state, board, row, col):
         """
@@ -208,18 +209,17 @@ class MDPAgent(Agent):
         # Positions where value stored should not be altered.
         protected_pos = api.ghosts(state) + api.walls(state)
         gamma = 0.9     # discount value
-        iterations = 7     # max number of iterations
-        threshold = 0.01
-        height = board_copy.get_board_height()
-        width = board_copy.get_board_width()
+        iterations = 14     # max number of iterations
+        threshold = 0.11
 
         while iterations > 0:
+            # while True:
             U = copy.deepcopy(board_copy)
             # total differences between previous board and new board which has been made at the end of the iteration
             total_difference = 0
 
-            for row in range(height):
-                for col in range(width):
+            for row in range(self.height):
+                for col in range(self.width):
                     value = board_copy[row, col]
                     # Check to make sure this position is not where a wall or a ghost is.
                     if (col, board.convert_y(row)) not in protected_pos:
@@ -230,9 +230,9 @@ class MDPAgent(Agent):
                         board_copy[row, col] = board[row, col] + gamma * \
                             max_expected_utility  # Bellman's equation
 
-            # calculate differences for each position using the old board (U) and new board (board_copy)
-            # for row in range(height):
-            #     for col in range(width):
+            # calculate differences for each position using the old board(U) and new board(board_copy)
+            # for row in range(self.height):
+            #     for col in range(self.width):
             #         value = board_copy[row, col]
             #         if (col, board.convert_y(row)) not in protected_pos:
             #             total_difference += abs(round(value - U[row, col], 4))
@@ -253,24 +253,24 @@ class MDPAgent(Agent):
                 Directions: Intended action that Pacman will carry out.
         """
         current_pos = api.whereAmI(state)
-        corners = api.corners(state)
         food = api.food(state)
         ghosts = api.ghosts(state)
-        walls = api.walls(state)
         legal = api.legalActions(state)
         capsules = api.capsules(state)
 
-        width = max(corners)[0] + 1  # max x coordinate + 1
-        height = max(corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
-
-        board = self.create_board(width, height, -0.04)
-        board.set_position_values(walls, 'x')
+        board = Board(self.width, self.height, -0.04)
+        board.set_position_values(self.walls, 'x')
         board.set_position_values(capsules, 2)
+        answer = float(len(food)) / float(self.food_count)
+
+        # board.set_position_values(food, round(1 / answer, 4))
+        # board.set_position_values(ghosts, round(-10 / answer, 4))
+
         board.set_position_values(food, 1)
         board.set_position_values(ghosts, -3)
 
         # rewards of ghosts, walls and current position cannot be overridden
-        protected_pos = set(ghosts + walls + [current_pos])
+        protected_pos = set(ghosts + self.walls + [current_pos])
 
         # make sure all ghost coordinates are ints rather than floats
         int_ghosts = [(int(x), int(y)) for x, y in ghosts]
@@ -285,7 +285,11 @@ class MDPAgent(Agent):
                 for y_coord in y_coordinates:
                     if (x_coord, y_coord) not in protected_pos:
                         # set the reward value to -2.
-                        board[int(board.convert_y(y_coord)), int(x_coord)] = -2
+                        board[int(board.convert_y(y_coord)), int(
+                            x_coord)] = -2
+
+                        # board[int(board.convert_y(y_coord)), int(
+                        #     x_coord)] = round(-2 / answer * 0.8, 4)
 
         board = self.value_iteration(state, board)
 

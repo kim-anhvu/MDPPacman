@@ -7,6 +7,7 @@
 \usepackage{dirtree}
 \usepackage{titling}
 \usepackage{graphicx}
+\usepackage{adjustbox}
 
 
 \graphicspath{ {/Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/} }
@@ -95,35 +96,85 @@
 
         \begin{table}[H]
           \begin{center}
-            \begin{tabular}{c|c|c}
-              \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Medium Classic Win Rate (\%)}\\
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{*{5}{|c}|}
+              \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
               \hline
-              % 80, 73, 78
-              % 84, 80, 80, 84 - 85.6
-              % 88, 86, 84, 84 - 85.6
-              10 & 100.0 & 82.0 \\ % 77, 86, 83, 78, 86
-              11 & 100.0 & 85.6 \\  % 80, 88, 89, 90, 81
-              12 & 100.0 & 83.0 \\ % 83, 79, 80, 89, 84
-              13 & 100.0 & 81.6 \\ % 81.5, 85, 80, 80
-              14 & 100.0 & 85.0 \\ % 83, 89, 83, 86, 84
-              15 & 100.0 & 86.0\\ % 90, 87, 87, 86, 80,
-              16 & 100.0 & 87.0\\ % 178, 86, 83, 88
-              17 & 100.0 & 89.8\\ % 184, 84, 90, 91
-              18 & 100.0 & 86.2\\ % 86, 84, 90, 82, 89
-              19 & 100.0 & 90.0\\ % 2
-              20 & 100.0 & 89.0\\ % 2
+              7 & 52 & 0 & 26 & 0\\
+              8 & 63 & 0  & 30 & 0\\
+              9 & 53 & 0  & 35 & 0\\
+              10 & 60 & 0 & 41 & 0\\
+              11 & 70 & 0 & 40 & 0\\
+              12 & 63 & 0 & 37 & 0\\
+              13 & 58 & 0 & 41 & 0\\
+              14 & 64 & 0 & 44 & 0\\
+              15 & 64 & 0 & 43 & 0\\
+              16 & 59 & 0 & 38 & 0\\
+              17 & 59 & 0 & 40 & 0\\
+              18 & 69 & 0 & 42 & 0\\
+              19 & 60 & 0 & 39 & 0\\
+              20 & 56 & 0 & 38 & 0\\
             \end{tabular}
-            \caption{Finding optimum number of iterations which results in highest win rate. For each iteration, the game was run 500 times \& $\gamma$ = 0.9.}
+            \end{adjustbox}
+            \caption{Finding optimum number of iterations which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2.}
             \label{tab:table5}
           \end{center}
         \end{table}
 
         \begin{figure}[H]
           \centering
-          \includegraphics[scale=.45]{iterations_graph.png}
+          \includegraphics[scale=.6]{iterations_graph.png}
           \caption{Graph showing relationship between number of iterations and win rate for each layout}
         \end{figure}
-        Starting point for number of iterations was initially 1, however the average win rate for medium class was 14\% and it runs possibly infinitely for small grid. Therefore, it was realised that the starting point needs to be considerably higher, thus 10 was chosen as the official starting point.
+        Starting point for number of iterations was initially 1, however the average win rate for medium class was 14\% and it runs possibly infinitely for small grid. Therefore, it was realised that the starting point needs to be considerably higher, thus 7 was randomly chosen as the official starting point. It was observed that as the number of iterations diverged from 7, the higher the win rate for both layouts. However, as it reaches 14 for both layouts, the win rate plateaus. There are fluctuations in win rate from 14 onwards, but it may be due to the non-deterministic nature of the game, therefore the optimal iteration value chosen was 14.
+        \begin{table}[H]
+          \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{*{5}{|c}|}
+
+              \textbf{Threshold} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+              \hline
+              0.1 & 64 & 49 & 0\\
+              0.2 & 65 & 33 & 0\\
+              0.3 & 62 & 39 & 0\\
+              0.4 & 60 & 40 & 0\\
+              0.5 & 62 & 42 & 0\\
+              0.6 & 58 & 34 & 0\\
+              0.7 & 61 & 47 & 0\\
+              0.8 & 56 & 31 & 0\\
+              0.9 & 61 & 42 & 0\\
+              1.0 & 61 & 47 & 0\\
+
+            \end{tabular}
+            \end{adjustbox}
+            \caption{Finding optimum threshold which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 1.0)}
+            \label{tab:table5}
+          \end{center}
+        \end{table}
+        The table shows the optimum for smallGrid is between 0.1 and 0.2, thus testing was continued with a range of 0.1 and 0.2 for the threshold, in increments of 0.01.
+
+        \begin{table}[H]
+          \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{*{5}{|c}|}
+              \textbf{Threshold} & \textbf{Small Grid Win Rate (\%)} & \textbf{Medium Classic Win Rate (\%)}\\
+              \hline
+              0.11 & 61 & 0\\
+              0.12 & 60 & 0\\
+              0.13 & 58 & 0\\
+              0.14 & 62 & 0\\
+              0.15 & 63 & 0\\
+              0.16 & 62 & 0\\
+              0.17 & 66 & 0\\
+              0.18 & 67 & 0\\
+              0.19 & 66 & 0\\
+            \end{tabular}
+            \end{adjustbox}
+            \caption{Finding optimum threshold which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 0.2)}
+            \label{tab:table5}
+          \end{center}
+        \end{table}
+        Can observe that the optimum threshold for smallGrid is in between 0.17 and 0.19 as win rate is similar and may differ due to the non-deterministic nature of the game. However, after running it 100 times, I can assume 0.18 to be smallGrid's optimum threshold.
         \begin{table}[h!]
           \begin{center}
             \begin{tabular}{c|c|c}
