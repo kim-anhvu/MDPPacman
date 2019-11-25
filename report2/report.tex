@@ -100,24 +100,24 @@
             \begin{tabular}{*{5}{|c}|}
               \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
               \hline
-              7 & 52 & 0 & 26 & 0\\
-              8 & 63 & 0  & 30 & 0\\
-              9 & 53 & 0  & 35 & 0\\
-              10 & 60 & 0 & 41 & 0\\
-              11 & 70 & 0 & 40 & 0\\
-              12 & 63 & 0 & 37 & 0\\
-              13 & 58 & 0 & 41 & 0\\
-              14 & 64 & 0 & 44 & 0\\
-              15 & 64 & 0 & 43 & 0\\
-              16 & 59 & 0 & 38 & 0\\
-              17 & 59 & 0 & 40 & 0\\
-              18 & 69 & 0 & 42 & 0\\
-              19 & 60 & 0 & 39 & 0\\
-              20 & 56 & 0 & 38 & 0\\
+              7 & 52 & 6.25 & 26 & 445.25\\
+              8 & 63 & 7.42  & 30 & 759.76\\
+              9 & 53 & 12.32  & 35 & 1110.07\\
+              10 & 60 & 16.22 & 41 & 1228.42\\
+              11 & 70 & 26.10 & 40 & 1660.70\\
+              12 & 63 & 30.46 & 37 & 2045.95\\
+              13 & 58 & 36.31 & 41 & 2200.12\\
+              14 & 64 & 46.89 & 44 & 2376.07\\
+              15 & 64 & 66.31 & 43 & 2495.31\\
+              16 & 59 & 50.44 & 38 & 2412.19\\
+              17 & 59 & 58.29 & 40 & 2499.86\\
+              18 & 69 & 68.32 & 42 & 2503.80\\
+              19 & 60 & 85.30 & 39 & 2366.64\\
+              20 & 56 & 64.38 & 38 & 1544.07\\
             \end{tabular}
             \end{adjustbox}
-            \caption{Finding optimum number of iterations which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2.}
-            \label{tab:table5}
+            \caption{Finding optimum number of iterations that results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2.}
+            \label{tab:table2}
           \end{center}
         \end{table}
 
@@ -134,47 +134,63 @@
 
               \textbf{Threshold} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
               \hline
-              0.1 & 64 & 49 & 0\\
-              0.2 & 65 & 33 & 0\\
-              0.3 & 62 & 39 & 0\\
-              0.4 & 60 & 40 & 0\\
-              0.5 & 62 & 42 & 0\\
-              0.6 & 58 & 34 & 0\\
-              0.7 & 61 & 47 & 0\\
-              0.8 & 56 & 31 & 0\\
-              0.9 & 61 & 42 & 0\\
-              1.0 & 61 & 47 & 0\\
-
+              % 54.60
+              0.1 & 64 & 41.13 & 51 & 3479.87\\
+              0.2 & 65 & 38.65 & 33 & 3134.97\\
+              0.3 & 62 & 30.72 & 39 & 6305.70\\
+              0.4 & 60 & 28.95 & 40 & 6843.77\\
+              0.5 & 62 & 25.10 & 42 & 7011.25\\
+              0.6 & 58 & 110.23 & 34 & 7057.32\\
+              0.7 & 61 & 125.85 & 39 & 6506.80\\
+              0.8 & 56 & 30.63 & 31 & 2423.78\\
+              0.9 & 61 & 42.23 & 37 & 2664.63\\
+              1.0 & 61 & 54.66 & 39 & 2709.44\\
             \end{tabular}
             \end{adjustbox}
-            \caption{Finding optimum threshold which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 1.0)}
-            \label{tab:table5}
+            \caption{Finding optimum threshold that results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 1.0)}
+            \label{tab:table3}
           \end{center}
         \end{table}
-        The table shows the optimum for smallGrid is between 0.1 and 0.2, thus testing was continued with a range of 0.1 and 0.2 for the threshold, in increments of 0.01.
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=.6]{threshold_graph.png}
+          \caption{Graph showing relationship between threshold and win rate for each layout}
+        \end{figure}
+
+          The table shows the optimum for smallGrid is between 0.1 and 0.2 and the optimum for mediumClassic is 0.1. Therefore, the value of 0.1 is chosen as the threshold
 
         \begin{table}[H]
           \begin{center}
             \begin{adjustbox}{max width=\textwidth}
-            \begin{tabular}{*{5}{|c}|}
-              \textbf{Threshold} & \textbf{Small Grid Win Rate (\%)} & \textbf{Medium Classic Win Rate (\%)}\\
-              \hline
-              0.11 & 61 & 0\\
-              0.12 & 60 & 0\\
-              0.13 & 58 & 0\\
-              0.14 & 62 & 0\\
-              0.15 & 63 & 0\\
-              0.16 & 62 & 0\\
-              0.17 & 66 & 0\\
-              0.18 & 67 & 0\\
-              0.19 & 66 & 0\\
-            \end{tabular}
+              \begin{tabular}{*{5}{|c}|}
+
+                \textbf{Discount Factor} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+                \hline
+                0.0 & 6 & 1.28 & 0 & 48.19\\
+                0.1 & 1 & 1.75 & 0 & 129.14\\
+                0.2 & 5 & 1.62 & 14 & 181.35\\
+                0.3 & 7 & 2.41 & 17 & 233.43\\
+                0.4 & 12 & 3.31 & 31 & 406.39\\
+                0.5 & 64 & 5.06 & 34 & 511.38\\
+                0.6 & 66 & 6.62 & 35 & 504.32\\
+                0.7 & 69 & 9.44 & 43 & 626.83\\
+                0.8 & 66 & 9.47 & 46 & 572.78\\
+                0.9 & 75 & 9.52 & 50 & 511.64\\
+                1.0 & 59 & 9.25 & 37 & 484.08\\
+              \end{tabular}
             \end{adjustbox}
-            \caption{Finding optimum threshold which results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 0.2)}
-            \label{tab:table5}
-          \end{center}
-        \end{table}
-        Can observe that the optimum threshold for smallGrid is in between 0.17 and 0.19 as win rate is similar and may differ due to the non-deterministic nature of the game. However, after running it 100 times, I can assume 0.18 to be smallGrid's optimum threshold.
+            \caption{Finding optimum threshold that results in highest win rate. For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2. Number of iterations = 14.}
+              \label{tab:table4}
+        \end{center}
+      \end{table}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=.6]{discountfactor_graph.png}
+        \caption{Graph showing relationship between discount factor and win rate for each layout}
+      \end{figure}
+
         \begin{table}[h!]
           \begin{center}
             \begin{tabular}{c|c|c}
@@ -223,8 +239,3 @@
   none
 
 \end{document}
-
-% As  you  work  through  your  implementation  of  the  MDP-solver,  you  will  find  that  you  are  makinglots  of  decisions  about  how  precisely  to  translate  your  ideas  into  working  code.  The  report  should explain  these  at  length.
-% The  perfect  report  will  give  enough  detail  that  we  don’t  feel  we  have  to read your code in order to understand what you code does (we will read it anyway).Given  the  requirement  for  your  code  to  be  based  around  an  MDP-solver,  you  would  be  wise  to include a description of how your code solves the MDP, and which bits of the code do this solving.
- % Make sure you highlight these aspects of your work, especially things that make your work unique.
-% Your  report  should  also  analyse  the  performance  of  your  code.  Because  there  is  a  certain  amountof  randomness  in  the  behaviour  of  the  ghosts,  a  good  analysis  will  run  multiple  games  to  assessPacman’s performance.  For example, you might like to try running:python pacman.py -n 50 -q -p MDPAgent -l mediumClassicto get a statistically significant number of runs so that you can, for example, establish the averagescore with some accuracy.  (Of course, to decide whether this was a statistically significant number of runs,  you  would  have  to  do  some  statistical  analysis  —  it  might  well  need  more  runs.)  All  the conclusions that you present in your analysis should be justified by the data that you have collected

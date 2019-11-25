@@ -37,7 +37,6 @@ import game
 import util
 import numbers
 import copy
-import math
 
 
 class Board:
@@ -210,10 +209,10 @@ class MDPAgent(Agent):
         protected_pos = api.ghosts(state) + api.walls(state)
         gamma = 0.9     # discount value
         iterations = 14     # max number of iterations
-        threshold = 0.11
+        threshold = 0.1
 
+# ssh k1763873@bastion.nms.kcl.ac.uk
         while iterations > 0:
-            # while True:
             U = copy.deepcopy(board_copy)
             # total differences between previous board and new board which has been made at the end of the iteration
             total_difference = 0
@@ -230,15 +229,15 @@ class MDPAgent(Agent):
                         board_copy[row, col] = board[row, col] + gamma * \
                             max_expected_utility  # Bellman's equation
 
-            # calculate differences for each position using the old board(U) and new board(board_copy)
-            # for row in range(self.height):
-            #     for col in range(self.width):
-            #         value = board_copy[row, col]
-            #         if (col, board.convert_y(row)) not in protected_pos:
-            #             total_difference += abs(round(value - U[row, col], 4))
-            #
-            # if total_difference <= threshold:
-            #     break
+            calculate differences for each position using the old board(U) and new board(board_copy)
+            for row in range(self.height):
+                for col in range(self.width):
+                    value = board_copy[row, col]
+                    if (col, board.convert_y(row)) not in protected_pos:
+                        total_difference += abs(round(value - U[row, col], 4))
+
+            if total_difference <= threshold:
+                break
 
             iterations -= 1
 

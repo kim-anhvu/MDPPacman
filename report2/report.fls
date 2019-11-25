@@ -155,6 +155,12 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_graph.png
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_graph.png
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
 INPUT report.aux
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
