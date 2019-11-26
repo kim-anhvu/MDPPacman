@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1574702129 "report.tex" "report.pdf" "report" 1574702130
+["pdflatex"] 1574793674 "report.tex" "report.pdf" "report" 1574793674
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1480098701 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -89,8 +89,8 @@
   "images/discountfactor_graph.png" 1574697216 16350 fc10d941a72546b52ceb9ead5083f101 ""
   "images/iterations_graph.png" 1574695068 17974 0bc5427e9a2afee5ece3cdb4a6f6c2bd ""
   "images/threshold_graph.png" 1574695130 15593 aebdd150c56ac5aed9c2b5b3c8f930d5 ""
-  "report.aux" 1574702130 2447 b83fbd5779f37c0a32cbfcdc8b17dae9 ""
-  "report.tex" 1574702129 16088 d4e5055ba61868eb96cf03b927dfb6ed ""
+  "report.aux" 1574793674 2079 0210047823717d46f053209b32ac9e86 ""
+  "report.tex" 1574793673 17637 755006ec48e5fbc863da60641f0d3c69 ""
   (generated)
   "report.aux"
   "report.pdf"

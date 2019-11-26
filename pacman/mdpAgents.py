@@ -150,13 +150,6 @@ class MDPAgent(Agent):
         self.height = max(self.corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
         self.walls = api.walls(state)
 
-    # def update_multiplier(self, state):
-    #     food_count = len(api.food(state))
-    #
-    #     if food_count <= math.floor(self.food_count / 2):
-    #         self.multiplier += 1
-    #         self.food_count = food_count
-
     def calculate_expected_utility(self, state, board, row, col):
         """
             The function to calculate expected utility for a specified position on the
@@ -207,7 +200,7 @@ class MDPAgent(Agent):
         board_copy = copy.deepcopy(board)
         # Positions where value stored should not be altered.
         protected_pos = api.ghosts(state) + api.walls(state)
-        gamma = 0.9     # discount value
+        gamma = 0.9     # discount factor
         iterations = 14     # max number of iterations
         threshold = 0.1
 
@@ -229,7 +222,7 @@ class MDPAgent(Agent):
                         board_copy[row, col] = board[row, col] + gamma * \
                             max_expected_utility  # Bellman's equation
 
-            calculate differences for each position using the old board(U) and new board(board_copy)
+            # calculate differences for each position using the old board(U) and new board(board_copy)
             for row in range(self.height):
                 for col in range(self.width):
                     value = board_copy[row, col]
@@ -266,7 +259,7 @@ class MDPAgent(Agent):
         # board.set_position_values(ghosts, round(-10 / answer, 4))
 
         board.set_position_values(food, 1)
-        board.set_position_values(ghosts, -3)
+        board.set_position_values(ghosts, -5)
 
         # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + self.walls + [current_pos])
@@ -283,19 +276,19 @@ class MDPAgent(Agent):
             for x_coord in x_coordinates:
                 for y_coord in y_coordinates:
                     if (x_coord, y_coord) not in protected_pos:
-                        # set the reward value to -2.
+                        # set the reward value of surrounding positions of
+                        # ghosts to -3.
                         board[int(board.convert_y(y_coord)), int(
-                            x_coord)] = -2
-
-                        # board[int(board.convert_y(y_coord)), int(
-                        #     x_coord)] = round(-2 / answer * 0.8, 4)
+                            x_coord)] = -4
 
         board = self.value_iteration(state, board)
 
         expected_utility = self.calculate_expected_utility(
             state, board, board.convert_y(current_pos[1]), current_pos[0])
         # returns action associated to the max utility out of all the legal actions.
-        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
+        # return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
+        return api.makeMove(max(expected_utility, key=itemgetter(1))[1], legal)
 
 # Try to change ghost reward when capsule has been eaten
 # Try to return Direction.STOP if best action is not in legal
+# return api.makeMove(max(expected_utility, key=itemgetter(1))[1], legal)

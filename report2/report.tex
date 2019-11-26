@@ -53,7 +53,7 @@
         \newline \hspace*{1cm} \underline{Example:}
         \newline \hspace*{1cm} You have updated the value at (x, y) in `board\_copy' and you needed the value at (x, y + 1) \hspace*{1cm} to do so. Now you need to update the value at (x, y + 1), which will need the old value of (x, \hspace*{1cm} y) which will be stored in `U'.
         \newline \newline
-        This function iterates through `board\_copy' for maximum of 15 times, resets the variable total\_difference (total difference between current board and future board) to zero and checks whether or not the cell is anything but a wall or a ghost. This is done by confirming if the position is not in `protected\_pos' which is a cocantenation of the list of ghost positions and list of wall positions. If the condition is satisfied, `calculate\_expected\_utility' is invoked.
+        This function iterates through `board\_copy' for a maximum of 14 times, resets the variable total\_difference (total difference between current board and future board as value iteration eventually converges) to zero and checks whether or not the cell is anything but a wall or a ghost. This is done by confirming if the position is not in `protected\_pos' which is a cocantenation of the list of ghost positions and list of wall positions. If the condition is satisfied `calculate\_expected\_utility' is invoked.
         \newline \newline
         `calculate\_expected\_utility' is a function that generates the potential next position of Pacman in a list called `coords'. All lists in this function's ordering is always the same, with the position or utility associated with going north always comes first, then east, south and finally west. The `coord' list which initially contains positions is looped through and any position that is a currently occupied by a wall is replaced with the current position. Due to this strategy, there is no need to check if the index is out of bounds. Then, pair each position with its corresponding reward/utility. The list is then looped through to find the positions that are at a right angle to each coordinate.
 
@@ -76,90 +76,97 @@
             \label{tab:table1}
           \end{center}
         \end{table}
-        From looking at the diagram and the table, you can now work out any possible action from an intended action using indices. To get the index of the position which is 90$^{\circ}$ anti-clockwise to the intended action, you need to add 3 to the corresponding index to your action, mod 4 and to get the position which 90$^{\circ}$ clockwise to the intended action, you need to add 1 to the corresponding index to your action, mod 4.
+        From looking at the diagram and the table, you can now work out any possible action from an intended action using indices and modular arithmetic - this removes the need to create many if statements. To get the index of the position which is 90$^{\circ}$ anti-clockwise to the intended action, you need to add 3 to the corresponding index to your action, mod 4 and to get the position which 90$^{\circ}$ clockwise to the intended action, you need to add 1 to the corresponding index to your action, mod 4.
         \newline \newline
         Now that you know all coordinates that are associated when making a certain move, you multiply the value of the position that you will end up when making the intended action by 0.8 and the value of the positions if you make an action 90$^{\circ}$ to the intended action by 0.1. After, place the sum of the values in a tuple with the intended action and add it to the `prob' list. When calculations are done for all possible actions, return the `prob' list.
         \newline \newline
         The `value\_iteration' only takes the first element of each tuple in the list returned by `calculate\_expected\_utility', which is the expected utility for each intended action. The maximum expected utility is calculated and this value is inputted in the Bellman's equation, in which the answer is then assigned as the utility of that position on the board.
         \newline \newline
-        We then calculate the total difference between the previous board and the new board in terms of utilities. If the total is less than the threshold, then the difference is so small that iterating through the board again is obsolete, therefore we break. However, if the total difference between the two boards is larger than the threshold, then we depreciate the variable `iterations' by 1 and loop through the new board. When `iterations' is equal to zero or when we break from the loop, the new board calculated is returned to `getAction', where `getAction' then calls on `calculate\_expected\_utility' with the current position of the pacman and the new board obtained from `value\_iteration' as parameters. This will then allow the returning of an action that has the maximum expected utility, if only the action is legal.
+        In this case, value iteration will inevitably converge due to factors like the state and action space are finite and although the environment is continuous, the discount factor is less than 1 (0.9). However, convergence can take a long time, therefore a threshold is introduced to break the loop, hence reducing the running time, at a point where a long running time is not an acceptable trade-off for further iterations slightly improving the accuracy of the policy.
+        \newline \newline
+        The total difference between the previous board and the new board in terms of utilities is calculated at the end of each iteration and if the total is less than the threshold, then the difference is so small that iterating through the board again is obsolete, therefore we break. However, if the total difference between the two boards is larger than the threshold, then we depreciate the variable `iterations' by 1 and loop through the new board. When `iterations' is equal to zero or when we break from the loop, the new board calculated is returned to `getAction', where `getAction' then calls on `calculate\_expected\_utility' with the current position of the pacman and the new board obtained from `value\_iteration' as parameters. The list returned is filtered to only include actions that are legal and then returns `makeMove' with the action with the maximum expected utility as the parameter.
+
+        The code was tested to return `makeMove' with the action with the maximum expected utility without filtering actions that are not present in the `api.legalActions' beforehand. The results were very poor (further elaborated in `Performance Analysis'), thus the decision to filter the list first, before finding the maximum expected utility was made.
+
+
 
       \section*{Creativity}
         \begin{itemize}
-          \item Identifying positions that are at a right angle to the current position by manipulating indicies using addition and modulus. This avoids the need to have many if statements for every action. In `calculate\_expected\_utility, only one if statement was used.
+          \item Identifying positions that are at a right angle to the current position by manipulating indicies using modular arithmetic. This avoids the need to have many if statements for every action. In `calculate\_expected\_utility, only one if statement was used.
           \item Setting the reward of the positions that surround the ghosts to a value that is larger than the ghost reward but less than the non-terminal reward. This is essentially a warning to the pacman that going in that direction means they will be closer to the ghost.
           \item Used threshold and a limit to how many iterations you have to loop through the board. Prevents value\_iteration from running infinitely and if the difference is small enough, does not waste computational power and time to iterate again.
         \end{itemize}
 
 
       \section*{Performance Analysis}
-
-        \begin{table}[H]
-          \begin{center}
-            \begin{adjustbox}{max width=\textwidth}
-            \begin{tabular}{*{5}{|c}|}
-              \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
-              \hline
-              7 & 52 & 6.25 & 26 & 445.25\\
-              8 & 63 & 7.42  & 30 & 759.76\\
-              9 & 53 & 12.32  & 35 & 1110.07\\
-              10 & 60 & 16.22 & 41 & 1228.42\\
-              11 & 70 & 26.10 & 40 & 1660.70\\
-              12 & 63 & 30.46 & 37 & 2045.95\\
-              13 & 58 & 36.31 & 41 & 2200.12\\
-              14 & 64 & 46.89 & 44 & 2376.07\\
-              15 & 64 & 66.31 & 43 & 2495.31\\
-              16 & 59 & 50.44 & 38 & 2412.19\\
-              17 & 59 & 58.29 & 40 & 2499.86\\
-              18 & 69 & 68.32 & 42 & 2503.80\\
-              19 & 60 & 85.30 & 39 & 2366.64\\
-              20 & 56 & 64.38 & 38 & 1544.07\\
-            \end{tabular}
-            \end{adjustbox}
-            \caption{Finding optimum number of iterations that results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2.}
-            \label{tab:table2}
-          \end{center}
-        \end{table}
-
+        \subsection*{Number of Iterations}
+          \begin{table}[H]
+            \begin{center}
+              \begin{adjustbox}{max width=\textwidth}
+              \begin{tabular}{*{5}{|c}|}
+                \textbf{No. of Iterations} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+                \hline
+                7 & 52 & 6.25 & 26 & 445.25\\
+                8 & 63 & 7.42  & 30 & 759.76\\
+                9 & 53 & 12.32  & 35 & 1110.07\\
+                10 & 60 & 16.22 & 41 & 1228.42\\
+                11 & 70 & 26.10 & 40 & 1660.70\\
+                12 & 63 & 30.46 & 37 & 2045.95\\
+                13 & 58 & 36.31 & 41 & 2200.12\\
+                14 & 64 & 46.89 & 44 & 2376.07\\
+                15 & 64 & 66.31 & 43 & 2495.31\\
+                16 & 59 & 50.44 & 38 & 2412.19\\
+                17 & 59 & 58.29 & 40 & 2499.86\\
+                18 & 69 & 68.32 & 42 & 2503.80\\
+                19 & 60 & 85.30 & 39 & 2366.64\\
+                20 & 56 & 64.38 & 38 & 1544.07\\
+              \end{tabular}
+              \end{adjustbox}
+              \caption{Finding optimum number of iterations that results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2.}
+              \label{tab:table2}
+            \end{center}
+          \end{table}
+          \vspace{-13mm}
         \begin{figure}[H]
           \centering
-          \includegraphics[scale=.6]{iterations_graph.png}
-          \caption{Graph showing relationship between number of iterations and win rate for each layout}
+            \includegraphics[scale=.6]{iterations_graph.png}
+            \caption{Graph showing relationship between number of iterations and win rate for each layout}
         \end{figure}
-        Starting point for number of iterations was initially 1, however the average win rate for medium class was 14\% and it runs possibly infinitely for small grid. Therefore, it was realised that the starting point needs to be considerably higher, thus 7 was randomly chosen as the official starting point. It was observed that as the number of iterations diverged from 7, the higher the win rate for both layouts. However, as it reaches 14 for both layouts, the win rate plateaus. There are fluctuations in win rate from 14 onwards, but it may be due to the non-deterministic nature of the game, therefore the optimal iteration value chosen was 14.
+          Starting point for number of iterations was initially 1, however the average win rate for mediumClassic was 14\% and after leaving smallGrid to run for an hour, the first game was still ongoing. Therefore, it was realised that the starting point needs to be considerably higher, thus 7 was randomly chosen as the official starting point. It was observed that as the number of iterations positively diverged from 7, the higher the win rate for both layouts. However, as it reaches 14 for both layouts, the win rate plateaus. There are fluctuations in win rate from 14 onwards, but it may be due to the non-deterministic nature of the game, therefore the optimal iteration value chosen was 14.
+
+      \subsection*{Threshold}
         \begin{table}[H]
           \begin{center}
             \begin{adjustbox}{max width=\textwidth}
             \begin{tabular}{*{5}{|c}|}
-
               \textbf{Threshold} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
               \hline
-              % 54.60
-              0.1 & 64 & 41.13 & 51 & 3479.87\\
-              0.2 & 65 & 38.65 & 33 & 3134.97\\
-              0.3 & 62 & 30.72 & 39 & 6305.70\\
-              0.4 & 60 & 28.95 & 40 & 6843.77\\
-              0.5 & 62 & 25.10 & 42 & 7011.25\\
-              0.6 & 58 & 110.23 & 34 & 7057.32\\
-              0.7 & 61 & 125.85 & 39 & 6506.80\\
+              0.1 & 64 & 125.85 & 51 & 7057.32\\
+              0.2 & 65 & 110.23 & 33 & 7011.25\\
+              0.3 & 62 & 98.34 & 39 & 6843.77\\
+              0.4 & 60 & 72.67 & 40 & 6305.70\\
+              0.5 & 62 & 54.66 & 42 & 6506.80\\
+              0.6 & 58 & 42.23 & 34 & 3479.87\\
+              0.7 & 61 & 46.75 & 39 & 3134.97\\
               0.8 & 56 & 30.63 & 31 & 2423.78\\
-              0.9 & 61 & 42.23 & 37 & 2664.63\\
-              1.0 & 61 & 54.66 & 39 & 2709.44\\
+              0.9 & 61 & 28.95 & 37 & 2664.63\\
+              1.0 & 61 & 25.10.66 & 39 & 2709.44\\
             \end{tabular}
             \end{adjustbox}
             \caption{Finding optimum threshold that results in highest win rate. For each iteration, the game was run 100 times, $\gamma$ = 0.9, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, range = (0.1, 1.0)}
             \label{tab:table3}
           \end{center}
         \end{table}
-
+        \vspace{-13mm}
         \begin{figure}[H]
           \centering
           \includegraphics[scale=.6]{threshold_graph.png}
           \caption{Graph showing relationship between threshold and win rate for each layout}
         \end{figure}
 
-          The table shows the optimum for smallGrid is between 0.1 and 0.2 and the optimum for mediumClassic is 0.1. Therefore, the value of 0.1 is chosen as the threshold
+          The table shows the optimum for smallGrid is between 0.1 and 0.2 and the optimum for mediumClassic is 0.1. Furthermore, if you are to compare the results between using a fixed number of iterations (14) and a threshold (0.1), you can see the results for smallGrid are similar, however for mediumClassic, using a threshold slightly outperforms using a fixed number iterations alone. On the contrary, the running time difference between using threshold alone and using a fixed number of iterations is significant as on average it takes many more iterations to have a total difference that is less than 0.1. Due to evaluating the advantages and disadvantages of using different iterating strategies, it was decided to use mainly a fixed number of iterations as the win rate would be similar to using a threshold of 0.1, taking 46.81s on average faster for each game. Although, a threshold is implemented as well, so if there is an instance where the total difference is less than threshold and the program has ran less than 14 iterations, it will break the loop which reduces overall running time and computational power.
 
+      \subsection*{Discount Factor}
         \begin{table}[H]
           \begin{center}
             \begin{adjustbox}{max width=\textwidth}
@@ -184,38 +191,13 @@
               \label{tab:table4}
         \end{center}
       \end{table}
-
+      \vspace{-13mm}
       \begin{figure}[H]
         \centering
         \includegraphics[scale=.6]{discountfactor_graph.png}
         \caption{Graph showing relationship between discount factor and win rate for each layout}
       \end{figure}
-
-        \begin{table}[h!]
-          \begin{center}
-            \begin{tabular}{c|c|c}
-              \textbf{Board} & \textbf{Win Rate} & \textbf{Average Win Rate (\%)} \\
-              \hline
-              SMALL GRID & 377/500 & 75.4\\
-              MEDIUM CLASSIC & 279/500 & 55.8\\
-            \end{tabular}
-            \caption{Win rate for the two boards. Used set amount of iterations (10) \& $\gamma$ = 0.9.}
-            \label{tab:table2}
-          \end{center}
-        \end{table}
-
-        \begin{table}[h!]
-          \begin{center}
-            \begin{tabular}{c|c|c}
-              \textbf{Board} & \textbf{Win Rate} & \textbf{Average Win Rate (\%)} \\
-              \hline
-              SMALL GRID & 382/500 & 76.4\\
-              MEDIUM CLASSIC & 279/500 & 55.8\\
-            \end{tabular}
-            \caption{Win rate for the two boards. Used a threshold of 0.01 \& $\gamma$ = 0.9.}
-            \label{tab:table3}
-          \end{center}
-        \end{table}
+      There is a common trend for both layouts where win rate increases from 0.0 to 0.9, however when the discount factor is 1.0, the win rate for both layouts dips drastically (21.3\% and 26\% decrease for smallGrid and mediumClassic respectively).
 
         \begin{table}[h!]
           \begin{center}
