@@ -144,7 +144,8 @@ class MDPAgent(Agent):
         name = "Pacman"
 
     def registerInitialState(self, state):
-        self.food_count = len(api.food(state))
+        self.initial_num_food = len(api.food(state))
+        # self.multiplier = 1
         self.corners = api.corners(state)
         self.width = max(self.corners)[0] + 1  # max x coordinate + 1
         self.height = max(self.corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
@@ -249,17 +250,17 @@ class MDPAgent(Agent):
         ghosts = api.ghosts(state)
         legal = api.legalActions(state)
         capsules = api.capsules(state)
+        multiplier = (len(food)/float(self.initial_num_food)) ** 2
 
         board = Board(self.width, self.height, -0.04)
         board.set_position_values(self.walls, 'x')
-        board.set_position_values(capsules, 2)
-        answer = float(len(food)) / float(self.food_count)
+        board.set_position_values(capsules, 2 * multiplier)
 
         # board.set_position_values(food, round(1 / answer, 4))
         # board.set_position_values(ghosts, round(-10 / answer, 4))
 
-        board.set_position_values(food, 1)
-        board.set_position_values(ghosts, -5)
+        board.set_position_values(food, 1 * multiplier)
+        board.set_position_values(ghosts, -5 * multiplier)
 
         # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + self.walls + [current_pos])
@@ -279,16 +280,15 @@ class MDPAgent(Agent):
                         # set the reward value of surrounding positions of
                         # ghosts to -3.
                         board[int(board.convert_y(y_coord)), int(
-                            x_coord)] = -4
+                            x_coord)] = -4 * multiplier
 
         board = self.value_iteration(state, board)
 
         expected_utility = self.calculate_expected_utility(
             state, board, board.convert_y(current_pos[1]), current_pos[0])
         # returns action associated to the max utility out of all the legal actions.
-        # return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
-        return api.makeMove(max(expected_utility, key=itemgetter(1))[1], legal)
+        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
+
 
 # Try to change ghost reward when capsule has been eaten
-# Try to return Direction.STOP if best action is not in legal
-# return api.makeMove(max(expected_utility, key=itemgetter(1))[1], legal)
+# [(74, 13.00), ]
