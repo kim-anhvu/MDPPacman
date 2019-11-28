@@ -208,7 +208,8 @@ class MDPAgent(Agent):
 # ssh k1763873@bastion.nms.kcl.ac.uk
         while iterations > 0:
             U = copy.deepcopy(board_copy)
-            # total differences between previous board and new board which has been made at the end of the iteration
+            # total differences between previous board and new board which has been made
+            # at the end of the iteration
             total_difference = 0
 
             for row in range(self.height):
@@ -226,8 +227,8 @@ class MDPAgent(Agent):
             # calculate differences for each position using the old board(U) and new board(board_copy)
             for row in range(self.height):
                 for col in range(self.width):
-                    value = board_copy[row, col]
                     if (col, board.convert_y(row)) not in protected_pos:
+                        value = board_copy[row, col]
                         total_difference += abs(round(value - U[row, col], 4))
 
             if total_difference <= threshold:
@@ -238,6 +239,13 @@ class MDPAgent(Agent):
         return board_copy
 
     def get_next_pos(self, (x, y)):
+        """
+            The function to work out potential positions of the ghost in its next move.
+            Parameters:
+                (x,y) (int, int): position of ghost
+            Returns:
+                [(int, int)]: List of four tuples containing its potential positions from given position
+        """
         # possible coordinates that positions around the ghost can have
         return [(x - 1, y), (x, y + 1), (x, y - 1), (x + 1, y)]
 
@@ -251,44 +259,45 @@ class MDPAgent(Agent):
         """
         current_pos = api.whereAmI(state)
         food = api.food(state)
-        ghosts = api.ghosts(state)
+        # make sure all ghost coordinates are ints rather than floats
+        ghosts = [(int(x), int(y)) for x, y in api.ghosts(state)]
         legal = api.legalActions(state)
         capsules = api.capsules(state)
-        multiplier = ((0.6 * len(food)/float(self.initial_num_food)) ** 2) + 10
+
+        food_multiplier = ((0.8 * len(food)/float(self.initial_num_food)) ** 2) + 10
+        ghost_multiplier = ((0.2 * len(food)/float(self.initial_num_food)) ** 2) + 8
 
         board = Board(self.width, self.height, -0.04)
         board.set_position_values(self.walls, 'x')
-        board.set_position_values(capsules, 2 * multiplier)
-        board.set_position_values(food, 1 * multiplier)
-        board.set_position_values(ghosts, -7 * multiplier)
+        board.set_position_values(capsules, 2 * food_multiplier)
+        board.set_position_values(food, 1 * food_multiplier)
+        board.set_position_values(ghosts, -7 * ghost_multiplier)
 
         # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + self.walls + [current_pos])
 
-        # make sure all ghost coordinates are ints rather than floats
-        int_ghosts = [(int(x), int(y)) for x, y in ghosts]
-
-        for ghost in int_ghosts:
+        for ghost in ghosts:
             for pos in self.get_next_pos(ghost):
+                # loop through potential positions that the ghost can occupy if it were
+                # to move now
                 if pos not in protected_pos:
-                    # set the reward value of surrounding positions of
-                    # ghosts to -6.
-                    board[int(board.convert_y(pos[1])), int(
-                        pos[0])] = -6 * multiplier
+                    board[int(board.convert_y(pos[1])), int(pos[0])] = -6 * ghost_multiplier
+                    # set the reward value of surrounding positions of ghosts to -6 *
+                    # ghost multiplier.
                     for position in self.get_next_pos(pos):
+                        # loop through potential positions that the ghost can occupy if
+                        # it were to move two times.
                         if position not in protected_pos:
-                            # set the reward value of surrounding positions of
-                            # ghosts to -6.
                             board[int(board.convert_y(position[1])), int(
-                                position[0])] = -6 * multiplier
+                                position[0])] = -6 * ghost_multiplier
 
-        board = self.value_iteration(state, board)
+        board = self.value_iteration(state, board)  # call value iteration
 
         expected_utility = self.calculate_expected_utility(
             state, board, board.convert_y(current_pos[1]), current_pos[0])
-        # returns action associated to the max utility out of all the legal actions.
-        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
 
+        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
+        # returns action associated to the max utility out of all the legal actions.
 
 # Try to change ghost reward when capsule has been eaten
 # [(74, 13.00), ]

@@ -199,6 +199,32 @@
       \end{figure}
       There is a common trend for both layouts where win rate increases from 0.0 to 0.9, however when the discount factor is 1.0, the win rate for both layouts dips drastically (21.3\% and 26\% decrease for smallGrid and mediumClassic respectively).
 
+      \subsection*{Reward}
+        \begin{table}[H]
+          \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+              \begin{tabular}{*{5}{|c}|}
+
+                \textbf{Reward} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+                \hline
+                -2 & 63 & 11.04 & 34 & 4458.40\\
+                -3 & 64 & 11.29 & 36 & 4564.48\\
+                -4 & 63 & 59.60 & 31 & 4935.20\\
+                -5 & 61 & 59.51 & 44 & 5247.78\\
+                -6 & 70 & 66.72 & 36 & 4914.50\\
+                -7 & 72 & 94.30 & 46 & 5175.68\\
+                -8 & 71 & 117.11 & 43 & 4698.51\\
+                -9 & 69 & 118.53 & 41 & 3857.05\\
+                -10 & 70 & 132.62 & 42 & 2564.55\\
+                -11 & 72 & 146.82 & 39 & 2168.11\\
+                -12 & 69 & 61.70 & 40 & 1691.51\\
+              \end{tabular}
+            \end{adjustbox}
+            \caption{Finding optimum reward ratio that results in highest win rate. For each iteration, the game was run 100 times, threshold = 0.1, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, number of iterations = 14. Every reward was constant except from the ghost reward and the reward of the positions surrounding the ghosts. Difference between reward of the positions surrounding the ghosts and reward of ghosts is 1, where ghosts is always more negative.}
+              \label{tab:table4}
+        \end{center}
+      \end{table}
+
         \begin{table}[h!]
           \begin{center}
             \begin{tabular}{c|c}
@@ -214,6 +240,41 @@
 
           The choice was to keep the ghosts' rewards constant throughout the game was made due to the fact that it takes a shorter time to compute the final action to take and on average, the win rate is high compared to tailoring the ghosts' rewards based on if they were scared or not.
 
+      \subsection*{makeMove}
+        \begin{table}[H]
+          \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{*{5}{|c}|}
+
+              \textbf{} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+              \hline
+                    Filtered & 75 & 1.28 & 40 & 1016.87\\
+                    Unfiltered & 0 & 6.79 & 0 & 707.20\\
+
+            \end{tabular}
+            \end{adjustbox}
+            \caption{For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -5, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, number of iterations = 14.}
+            \label{tab:table4}
+          \end{center}
+        \end{table}
+
+        \subsection*{Ghost Reward Change Due To Consumption of Capsule}
+          \begin{table}[H]
+            \begin{center}
+              \begin{adjustbox}{max width=\textwidth}
+              \begin{tabular}{*{5}{|c}}
+
+                \textbf{} & \textbf{Small Grid Win Rate (\%)} & \textbf{Time Taken(s)} & \textbf{Medium Classic Win Rate (\%)} & \textbf{Time Taken (s)}\\
+                \hline
+                      No Change & 75 & 1.28 & 40 & 1016.87\\
+                      Unfiltered & 0 & 6.79 & 0 & 707.20\\
+
+              \end{tabular}
+              \end{adjustbox}
+              \caption{For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -5, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, number of iterations = 14.}
+              \label{tab:table4}
+            \end{center}
+          \end{table}
 
 
 
