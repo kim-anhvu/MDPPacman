@@ -237,6 +237,10 @@ class MDPAgent(Agent):
 
         return board_copy
 
+    def get_next_pos(self, (x, y)):
+        # possible coordinates that positions around the ghost can have
+        return [(x - 1, y), (x, y + 1), (x, y - 1), (x + 1, y)]
+
     def getAction(self, state):
         """
             The function to work out next intended action carried out.
@@ -250,17 +254,13 @@ class MDPAgent(Agent):
         ghosts = api.ghosts(state)
         legal = api.legalActions(state)
         capsules = api.capsules(state)
-        multiplier = (len(food)/float(self.initial_num_food)) ** 2
+        multiplier = ((0.6 * len(food)/float(self.initial_num_food)) ** 2) + 10
 
         board = Board(self.width, self.height, -0.04)
         board.set_position_values(self.walls, 'x')
         board.set_position_values(capsules, 2 * multiplier)
-
-        # board.set_position_values(food, round(1 / answer, 4))
-        # board.set_position_values(ghosts, round(-10 / answer, 4))
-
         board.set_position_values(food, 1 * multiplier)
-        board.set_position_values(ghosts, -5 * multiplier)
+        board.set_position_values(ghosts, -7 * multiplier)
 
         # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + self.walls + [current_pos])
@@ -268,19 +268,19 @@ class MDPAgent(Agent):
         # make sure all ghost coordinates are ints rather than floats
         int_ghosts = [(int(x), int(y)) for x, y in ghosts]
 
-        for x, y in int_ghosts:
-            # possible x coordinates that positions around the ghost can have
-            x_coordinates = [x - 1, x, x + 1]
-            # possible y coordinates that positions around the ghost can have
-            y_coordinates = [y - 1, y, y + 1]
-
-            for x_coord in x_coordinates:
-                for y_coord in y_coordinates:
-                    if (x_coord, y_coord) not in protected_pos:
-                        # set the reward value of surrounding positions of
-                        # ghosts to -3.
-                        board[int(board.convert_y(y_coord)), int(
-                            x_coord)] = -4 * multiplier
+        for ghost in int_ghosts:
+            for pos in self.get_next_pos(ghost):
+                if pos not in protected_pos:
+                    # set the reward value of surrounding positions of
+                    # ghosts to -6.
+                    board[int(board.convert_y(pos[1])), int(
+                        pos[0])] = -6 * multiplier
+                    for position in self.get_next_pos(pos):
+                        if position not in protected_pos:
+                            # set the reward value of surrounding positions of
+                            # ghosts to -6.
+                            board[int(board.convert_y(position[1])), int(
+                                position[0])] = -6 * multiplier
 
         board = self.value_iteration(state, board)
 
