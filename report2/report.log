@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  28 NOV 2019 10:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  29 NOV 2019 01:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -314,6 +314,18 @@ LaTeX Warning: Label `tab:table4' multiply defined.
 
 LaTeX Warning: Label `tab:table4' multiply defined.
 
+
+LaTeX Warning: Label `tab:table4' multiply defined.
+
+
+LaTeX Warning: Label `tab:table4' multiply defined.
+
+
+LaTeX Warning: Label `tab:table4' multiply defined.
+
+
+LaTeX Warning: Label `tab:table4' multiply defined.
+
 )
 \openout1 = `report.aux'.
 
@@ -441,138 +453,162 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 38--47
+Underfull \hbox (badness 10000) in paragraph at lines 36--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--47
+</Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_potenti
+al.png, id=9, 536.50438pt x 529.98pt>
+File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_po
+tential.png Graphic file (type png)
+
+<use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_pot
+ential.png>
+Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
+rt2/images/ghost_potential.png used on input line 49.
+(pdftex.def)             Requested size: 134.12576pt x 132.49466pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--47
+Underfull \hbox (badness 10000) in paragraph at lines 41--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--47
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
  []
 
+[1 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_pote
+ntial.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 53.
+(Font)              <12> on input line 62.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 53.
+(Font)              <8> on input line 62.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 53.
+(Font)              <6> on input line 62.
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--59
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--59
+Underfull \hbox (badness 10000) in paragraph at lines 58--68
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--59
+Underfull \hbox (badness 10000) in paragraph at lines 58--68
 
  []
 
-[1]
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--68
+
+ []
+
+
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_uti
-lity_diagram.png, id=13, 532.48938pt x 398.99063pt>
+lity_diagram.png, id=16, 449.68pt x 371.3875pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculat
 e_utility_diagram.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate
 _utility_diagram.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/calculate_utility_diagram.png used on input line 62.
-(pdftex.def)             Requested size: 239.61801pt x 179.54411pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
+rt2/images/calculate_utility_diagram.png used on input line 71.
+(pdftex.def)             Requested size: 211.34962pt x 174.55214pt.
+ [2 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate
+_utility_diagram.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 88--97
 
  []
 
 
-Overfull \hbox (47.11671pt too wide) in paragraph at lines 79--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--97
+
+ []
+
+
+Overfull \hbox (5.02605pt too wide) in paragraph at lines 88--97
 \OT1/cmr/m/n/12 The `value[]iteration' only takes the first el-e-ment of each t
-u-ple in the list re-turned by `cal-cu-late[]expected[]utility',
+u-ple in the list re-turned by `cal-cu-late[]expected
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--97
 
  []
 
-[2 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_
-utility_diagram.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 95.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+ [3]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_gr
-aph.png, id=20, 514.92375pt x 318.18875pt>
+aph.png, id=25, 514.92375pt x 318.18875pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteratio
 ns_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
 s_graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/iterations_graph.png used on input line 132.
+rt2/images/iterations_graph.png used on input line 159.
 (pdftex.def)             Requested size: 308.95662pt x 190.9147pt.
- [3]
+ [4]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold_gra
-ph.png, id=25, 602.25pt x 372.39125pt>
+ph.png, id=31, 602.25pt x 372.39125pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshol
 d_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
 _graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/threshold_graph.png used on input line 163.
+rt2/images/threshold_graph.png used on input line 190.
 (pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
- [4 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
+ [5 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
 s_graph.png>]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfacto
-r_graph.png, id=31, 602.25pt x 372.39125pt>
+r_graph.png, id=36, 602.25pt x 372.39125pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discount
 factor_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountf
 actor_graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/discountfactor_graph.png used on input line 197.
+rt2/images/discountfactor_graph.png used on input line 224.
 (pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
- [5 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
-_graph.png>] [6 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/imag
-es/discountfactor_graph.png>] [7] [8] (./report.aux)
+ [6 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
+_graph.png>]
+</Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_graph.
+png, id=42, 602.25pt x 372.39125pt>
+File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_g
+raph.png Graphic file (type png)
+
+<use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_gr
+aph.png>
+Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
+rt2/images/reward_graph.png used on input line 257.
+(pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
+ [7 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountf
+actor_graph.png>] [8 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2
+/images/reward_graph.png>] [9] [10] (./report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6636 strings out of 492995
- 100592 string characters out of 6132705
- 212949 words of memory out of 5000000
- 10057 multiletter control sequences out of 15000+600000
+ 6646 strings out of 492995
+ 101325 string characters out of 6132705
+ 207951 words of memory out of 5000000
+ 10065 multiletter control sequences out of 15000+600000
  8977 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,10n,37p,1140b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -583,10 +619,10 @@ usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (9 pages, 165609 bytes).
+Output written on report.pdf (11 pages, 200491 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

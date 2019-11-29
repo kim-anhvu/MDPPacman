@@ -138,6 +138,9 @@ INPUT /usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_potential.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_potential.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_potential.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -161,6 +164,9 @@ INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
 INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfactor_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_graph.png
+INPUT /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_graph.png
 INPUT report.aux
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb

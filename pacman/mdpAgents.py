@@ -145,7 +145,6 @@ class MDPAgent(Agent):
 
     def registerInitialState(self, state):
         self.initial_num_food = len(api.food(state))
-        # self.multiplier = 1
         self.corners = api.corners(state)
         self.width = max(self.corners)[0] + 1  # max x coordinate + 1
         self.height = max(self.corners, key=itemgetter(1))[1] + 1  # max y coordinate + 1
@@ -264,8 +263,8 @@ class MDPAgent(Agent):
         legal = api.legalActions(state)
         capsules = api.capsules(state)
 
-        food_multiplier = ((0.8 * len(food)/float(self.initial_num_food)) ** 2) + 10
-        ghost_multiplier = ((0.2 * len(food)/float(self.initial_num_food)) ** 2) + 8
+        food_multiplier = ((0.8 * len(food)/float(self.initial_num_food)) ** 2) + 6
+        ghost_multiplier = ((0.2 * len(food)/float(self.initial_num_food)) ** 2) + 3
 
         board = Board(self.width, self.height, -0.04)
         board.set_position_values(self.walls, 'x')
