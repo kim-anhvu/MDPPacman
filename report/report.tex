@@ -8,6 +8,7 @@
 \usepackage{titling}
 \usepackage{graphicx}
 \usepackage{adjustbox}
+\usepackage{amsmath}
 
 
 \graphicspath{ {/Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/} }
@@ -35,22 +36,21 @@
     \section*{Implementation}
       The local variables are created when the MDPAgent has been initialised, which includes the initial number of food available in the game (which will contribute to creating a scale to increase the food reward as they become scarce), the width, height and walls of the layout. These are variables that will be used throughout the class.
       \newline \newline
-      Firstly, to get the width and height of the layout, the corners list was used to find the maximum x and y value from the list of tuples and increment each value by 1. This is a better way of calculating the height and width than finding out which coordinates had the maximum y value and accessing the value directly using indexing, as order of the coordinates could change, so height and width values would not be accurate.
-      \vspace{-5mm}
-      \subsection*{Board Class}
-        When the getAction() function in the MDPAgent class is called, the necessary information (current position, food, ghosts, legal, capsules) are assigned to local variables from the API provided.
-        \newline \newline
-        Then, two different multipliers are created. One that will be applied to food and capsules and the other will be applied to ghosts and positions around the ghosts. The reason behind scaling the ghost rewards consists of the fact that the pacman will see the negative reward as insignificant if the food reward is too high, therefore will be willing to kill itself. Both will use the proportion of food that is left out of the initial number of food, however the food multiplier is higher as the food reward is less positive than the ghost reward is negative.
-        \newline \newline
-        Then, creating a separate Board class, which width, height and the reward value for non-terminal states (which will be the default reward value for each position on the board) is passed to. Then, set the reward of positions of the food, ghosts and capsules - replicating the layout of the board used. Also, rewards of potential positions the ghost can occupy in one or two moves (below) will have a value that is slightly more than the reward of ghosts, but much lower than the reward value for non-terminal states.
-        % \vspace{-13mm}
+      Firstly, to get the width and height of the layout, the corners list was used to find the maximum row and column value from the list of tuples and increment each value by 1. This is a better way of calculating the height and width than finding out which coordinates had the maximum y value and accessing the value directly using indexing, as the order of the coordinates could change, so height and width values would not be accurate.
+      \newline \newline
+      When the getAction() function in the MDPAgent class is called, the necessary information (current position, food, ghosts, legal, capsules) are assigned to local variables from the API provided.
+      \newline \newline
+      Then, two different multipliers are created. One that will be applied to food and capsules and the other will be applied to ghosts and positions around the ghosts. The reason behind scaling the ghost rewards consists of the fact that the pacman will see the negative reward as insignificant if the food reward is too high, therefore will be willing to kill itself. Both will use the proportion of food that is left out of the initial number of food, however the food multiplier is higher as the food reward is less positive than the ghost reward is negative.
+      \newline \newline
+      Then, a separate Board class is created, which width, height and the reward value for non-terminal states (which will be the default reward value for each position on the board) is passed to. This allows the setting of rewards of positions of the food, ghosts and capsules - replicating the layout of the board used. Also, rewards of potential positions the ghost can occupy in one or two moves (below) will have a value that is slightly more than the reward of ghosts, but much lower than the reward value for non-terminal states.
         \begin{figure}[H]
           \centering
           \includegraphics[scale=.25]{ghost_potential.png}
           \caption{Diagram showing potential positions ghost can make. Each square is marked by a number which represents move number of ghost.}
         \end{figure}
-
-        Public functions were also created in the Board class to prevent other classes from accessing the board and its attributes directly, contributing to achieving loose coupling. Examples of functions that are in the Board class are setting values of each position and converting the y coordinates, as the board (represented as a nested list) has row 0 as the top row, whereas the actual layout of the game's rows started from the bottom and the y coordinate increases as you go up. Therefore, you need a function that will be able to convert y coordinates of one board/layout to another.
+      \vspace{-5mm}
+      \subsection*{Board Class}
+        Public functions were created in the Board class to prevent other classes from accessing the board and its attributes directly, contributing to achieving loose coupling. Examples of functions that are in the Board class are setting values of each position or even taking in a list of positions and setting each position to the given value. Moreover, a function was created to convert the y coordinates, as the board (represented as a nested list) has row 0 as the top row, whereas the actual layout of the game's rows started from the bottom and the y coordinate increases as you go up. Therefore, you need a function that will be able to convert y coordinates of one board/layout to another.
         \newline \newline
         To obtain the updated board with each state containing an utility value, the function calls on the value iteration function.
 
@@ -91,24 +91,32 @@
         \newline \newline
         The `value\_iteration' only takes the first element of each tuple in the list returned by `calculate\_expected \_utility', which is the expected utility for each intended action. The maximum expected utility is calculated and this value is inputted in the Bellman's equation, in which the answer is then assigned as the utility of that position on the board.
         \newline \newline
-        In this case, value iteration will inevitably converge due to factors like the state and action space are finite and although the environment is continuous, the discount factor is less than 1 (0.9). However, convergence can take a long time, therefore a threshold is introduced to break the loop, hence reducing the running time, at a point where a long running time is not an acceptable trade-off for further iterations slightly improving the accuracy of the policy.
+        In this case, value iteration will inevitably converge due to factors like the state and action space are finite and although the environment is continuous, the discount factor is less than 1 (0.9). However, convergence can take a long time, therefore a threshold is introduced to break the loop, hence reducing the running time, at a point where a long running time is not an acceptable trade-off for further iterations - slightly improving the accuracy of the policy.
         \newline \newline
         The total difference between the previous board and the new board in terms of utilities is calculated at the end of each iteration and if the total is less than the threshold, then the difference is so small that iterating through the board again is obsolete, therefore we break. However, if the total difference between the two boards is larger than the threshold, then we depreciate the variable `iterations' by 1 and loop through the new board. When `iterations' is equal to zero or when we break from the loop, the new board calculated is returned to `getAction', where `getAction' then calls on `calculate\_expected\_utility' with the current position of the pacman and the new board obtained from `value\_iteration' as parameters. The list returned is filtered to only include actions that are legal and then returns `makeMove' with the action with the maximum expected utility as the parameter.
 
         The code was tested to return `makeMove' with the action with the maximum expected utility without filtering actions that are not present in the `api.legalActions' beforehand. The results were very poor (further elaborated in `Performance Analysis'), thus the decision to filter the list first, before finding the maximum expected utility was made.
-
-
 
       \section*{Creativity}
         \begin{itemize}
           \item Identifying positions that are at a right angle to the current position by manipulating indicies using modular arithmetic. This avoids the need to have many if statements for every action. In `calculate\_expected\_utility, only one if statement was used.
           \item Setting the reward of the positions that surround the ghosts to a value that is larger than the ghost reward but less than the non-terminal reward. This is essentially a warning to the pacman that going in that direction means they will be closer to the ghost.
           \item Used threshold and a limit to how many iterations you have to loop through the board. Prevents value\_iteration from running infinitely and if the difference is small enough, does not waste computational power and time to iterate again.
-          \item Scaled food reward, so as there is less food available, the reward of the food increases. This encourages pacman to move towards the scarce food.
+          \item Scaled food reward, so as there is less food available, the reward of the food increases. This encourages pacman to move towards the scarce food, rather than just wander around and happen to be at a closer distance to food. This is achieved by using two separate multipliers - one for ghost-related rewards and the other is food-related rewards.
+          \vspace{-2mm}
+            \begin{align*}
+              food\_multiplier &= 0.8 \left(\frac{current\_num\_food}{initial\_num\_of\_food}\right)^2 + 6
+            \end{align*}
+            \vspace{-5mm}
+            \begin{align*}
+              ghost\_multiplier &= 0.2 \left(\frac{current\_num\_food}{initial\_num\_of\_food}\right)^2 + 3
+            \end{align*}
+          \item Carried out a paired t-test and the two-tailed P value for smallGrid and mediumClassic is less than 0.0001, thus the difference is considered to statistically significant.
         \end{itemize}
 
       \section*{Performance Analysis}
       \subsection*{Base Performance}
+      These are the results that was noted at the start of the coursework. The base results will be developed upon.
         \begin{table}[H]
           \begin{center}
             \begin{adjustbox}{max width=\textwidth}
@@ -214,7 +222,7 @@
                 1.0 & 59 & 9.25 & 37 & 484.08\\
               \end{tabular}
             \end{adjustbox}
-            \caption{Finding optimum threshold that results in highest win rate. For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2. Number of iterations = 14.}
+            \caption{Finding optimum discount factor that results in highest win rate. For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -3, non-terminal reward = -0.04, food reward = 1, capsule reward = 2. Number of iterations = 14.}
               \label{tab:table4}
         \end{center}
       \end{table}
@@ -225,6 +233,26 @@
         \caption{Graph showing relationship between discount factor and win rate for each layout}
       \end{figure}
       There is a common trend for both layouts where win rate increases from 0.0 to 0.9, however when the discount factor is 1.0, the win rate for both layouts dips drastically (21.3\% and 26\% decrease for smallGrid and mediumClassic respectively).
+
+      \subsection*{Surrounding Ghosts Reward}
+      This is to test the win rate of each layout when adding a more negative reward to positions the ghosts can occupy in two moves.
+        \begin{table}[H]
+          \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{*{3}{c}}
+              \textbf{} & \textbf{Win Rate (\%)} & \textbf{Time Taken(s)} \\
+              \hline
+                    Small Grid & 78 & 11.98 \\
+                    Medium Classic & 62 & 15.27 \\
+
+            \end{tabular}
+            \end{adjustbox}
+            \caption{For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -5, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, number of iterations = 14.}
+            \label{tab:table4}
+          \end{center}
+        \end{table}
+        \vspace{-9mm}
+        The results are significantly higher due to the pacman planning its move, taking into account the possible ghosts' positions 2 moves ahead - decreasing vulnerability and increasing chances of survival.
 
       \subsection*{Reward}
         \begin{table}[H]
@@ -260,6 +288,7 @@
       For both layouts, win rate increases as you negatively diverge from a reward of -2 until you reach -6 which is when it plataeus. Thus, -7 and -6 was chosen to be the ghost reward and surround positions around the ghost reward respectively, to be comfortable in the optimum range.
 
       \subsection*{makeMove}
+      Testing to decide whether or not to call makeMove on the action that has the maximum utility out of the four possible actions or on the action that has the maximum utility out of all legal actions.
         \begin{table}[H]
           \begin{center}
             \begin{adjustbox}{max width=\textwidth}
@@ -297,26 +326,8 @@
           \vspace{-9mm}
           The choice to keep the ghosts' rewards constant throughout the game was made due to the fact that it takes roughly the same time to run both layouts and win rates are similar. There was a drastic difference in win rate when you only changed ghost-related rewards when the scared time of the ghost was $<$4 - this may be because the pacman can become much more closer to the ghost due to its invincibility, but when the ghosts are not scared anymore, the pacman will not have time to distance itself away from the ghosts, thus they are much more vulnerable to dying. Win rate significantly improves when you change the ghost-related rewards back at 4s or more, as there is more time for pacman to escape from the vicinity of the ghosts.
 
-          \subsection*{Surrounding Ghosts Reward}
-            \begin{table}[H]
-              \begin{center}
-                \begin{adjustbox}{max width=\textwidth}
-                \begin{tabular}{*{3}{c}}
-                  \textbf{} & \textbf{Win Rate (\%)} & \textbf{Time Taken(s)} \\
-                  \hline
-                        Small Grid & 78 & 11.98 \\
-                        Medium Classic & 62 & 15.27 \\
-
-                \end{tabular}
-                \end{adjustbox}
-                \caption{For each iteration, the game was run 100 times, threshold = 0.1, ghost reward = -5, non-terminal reward = -0.04, food reward = 1, capsule reward = 2, number of iterations = 14.}
-                \label{tab:table4}
-              \end{center}
-            \end{table}
-            \vspace{-9mm}
-            The results are significantly higher due to the pacman planning its move, taking into account the possible ghosts' positions 2 moves ahead. Decreasing vulnerability and increasing chances of survival.
             \subsection*{Scaling Food Reward}
-            Due to its parabolic feature (y moves in a positive direction as you increase x slowly at first and then much faster as x is larger), the multiplier will be represented as a quadratic equation.
+            Due to its parabolic feature (y moves in a positive direction as you increase x slowly at first and then much faster as x is larger), the multiplier will be represented as a quadratic equation. This further encourages pacman to move towards the scarce food as the game progresses.
               \begin{table}[H]
                 \begin{center}
                   \begin{adjustbox}{max width=\textwidth}
@@ -389,7 +400,8 @@
                   \label{tab:table4}
                 \end{center}
               \end{table}
-              From the tests, can conclude that for the food multiplier, the optimal coefficient is 0.8 and optimal constant is 6. Furthermore, for the ghost multiplier, the coefficient is 0.2 and optimal constant would be 3 as after 3, the results are quite similar. Fluctuations are due to the stochastic environment.
+                \vspace{-9mm}
+              \hspace{-8mm} From the tests, it can be concluded that for the food multiplier, the optimal coefficient is 0.8 and optimal constant is 6. Furthermore, for the ghost multiplier, the coefficient is 0.2 and optimal constant would be 3 as after 3, the results are quite similar. Fluctuations are most likely be due to the stochastic environment.
   \section*{Optimised Performance}
   Taking into account the findings from testing. The optimised MDP agent has been created by combining all optimal values observed from testing.
 

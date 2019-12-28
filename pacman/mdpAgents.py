@@ -168,19 +168,18 @@ class MDPAgent(Agent):
         prob = [(0, Directions.NORTH), (0, Directions.EAST),
                 (0, Directions.SOUTH), (0, Directions.WEST)]
 
+        # Loop through coord list to check if it is not a wall. If it is,
+        # replace the position with the current position.
         for i, (c, r) in enumerate(coord):
-            # Loop through coord list to check if it is not a wall. If it is,
-            # replace the position with the current position.
             if not isinstance(board[r, c], numbers.Number):
                 coord[i] = (col, row)
             # For each element in coord, pair element with corresponding reward in a tuple.
             coord[i] = (coord[i], board[coord[i][1], coord[i][0]])
-        # probably delete this
 
+        # Algorithm that loops through coord to identify positions that are at a
+        # right angle to current position and multiplies the corresponding
+        # reward/utility to the right probability.
         for i in range(len(coord)):
-            # Algorithm that loops through coord to identify positions that are at a
-            # right angle to current position and multiplies the corresponding
-            # reward/utility to the right probability.
             aclockwise_right_angle = (i + len(coord) - 1) % len(coord)
             clockwise_right_angle = (i + 1) % len(coord)
 
@@ -198,13 +197,13 @@ class MDPAgent(Agent):
                 Board: Board with updated utility values stored in each cell of board.
         """
         board_copy = copy.deepcopy(board)
-        # Positions where value stored should not be altered.
-        protected_pos = api.ghosts(state) + api.walls(state)
         gamma = 0.9     # discount factor
         iterations = 14     # max number of iterations
         threshold = 0.1
 
-# ssh k1763873@bastion.nms.kcl.ac.uk
+        # Positions where value stored should not be altered.
+        protected_pos = api.ghosts(state) + api.walls(state)
+
         while iterations > 0:
             U = copy.deepcopy(board_copy)
             # total differences between previous board and new board which has been made
@@ -275,14 +274,16 @@ class MDPAgent(Agent):
         # rewards of ghosts, walls and current position cannot be overridden
         protected_pos = set(ghosts + self.walls + [current_pos])
 
+        # setting a much more negative reward for potential positions ghosts can occupy
+        # in two moves.
         for ghost in ghosts:
+            # loop through potential positions that the ghost can occupy if it were
+            # to move now
             for pos in self.get_next_pos(ghost):
-                # loop through potential positions that the ghost can occupy if it were
-                # to move now
                 if pos not in protected_pos:
-                    board[int(board.convert_y(pos[1])), int(pos[0])] = -6 * ghost_multiplier
                     # set the reward value of surrounding positions of ghosts to -6 *
                     # ghost multiplier.
+                    board[int(board.convert_y(pos[1])), int(pos[0])] = -6 * ghost_multiplier
                     for position in self.get_next_pos(pos):
                         # loop through potential positions that the ghost can occupy if
                         # it were to move two times.
@@ -295,8 +296,5 @@ class MDPAgent(Agent):
         expected_utility = self.calculate_expected_utility(
             state, board, board.convert_y(current_pos[1]), current_pos[0])
 
-        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)
         # returns action associated to the max utility out of all the legal actions.
-
-# Try to change ghost reward when capsule has been eaten
-# [(74, 13.00), ]
+        return api.makeMove(max([(utility, action) for utility, action in expected_utility if action in legal])[1], legal)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  29 NOV 2019 01:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.8)  30 NOV 2019 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -298,6 +298,64 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@loff=\dimen140
 \@vwid@roff=\dimen141
 ))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks26
+\ex@=\dimen142
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen143
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count123
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count124
+\leftroot@=\count125
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count126
+\DOTSCASE@=\count127
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box35
+\strutbox@=\box36
+\big@size=\dimen144
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count128
+\c@MaxMatrixCols=\count129
+\dotsspace@=\muskip10
+\c@parentequation=\count130
+\dspbrk@lvl=\count131
+\tag@help=\toks27
+\row@=\count132
+\column@=\count133
+\maxfields@=\count134
+\andhelp@=\toks28
+\eqnshift@=\dimen145
+\alignsep@=\dimen146
+\tagshift@=\dimen147
+\tagwidth@=\dimen148
+\totwidth@=\dimen149
+\lineht@=\dimen150
+\@envbody=\toks29
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks30
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 
@@ -329,18 +387,18 @@ LaTeX Warning: Label `tab:table4' multiply defined.
 )
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -378,17 +436,17 @@ LaTeX Font Info:    ... okay on input line 25.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
-\scratchdimen=\dimen142
-\scratchbox=\box35
-\nofMPsegments=\count124
-\nofMParguments=\count125
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count126
-\MPscratchDim=\dimen143
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count135
+\scratchdimen=\dimen151
+\scratchbox=\box37
+\nofMPsegments=\count136
+\nofMParguments=\count137
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count138
+\MPscratchDim=\dimen152
+\MPnumerator=\count139
+\makeMPintoPDFobject=\count140
+\everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -435,8 +493,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count129
-\AtBeginShipoutBox=\box36
+\c@lstlisting=\count141
+\AtBeginShipoutBox=\box38
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -445,19 +503,9 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 28.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 28.
- [1
+) [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 36--40
-
- []
-
-
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_potenti
 al.png, id=9, 536.50438pt x 529.98pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_po
@@ -466,15 +514,25 @@ tential.png Graphic file (type png)
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_pot
 ential.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/ghost_potential.png used on input line 49.
+rt2/images/ghost_potential.png used on input line 48.
 (pdftex.def)             Requested size: 134.12576pt x 132.49466pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--51
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--51
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
 
  []
 
@@ -485,13 +543,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--56
 
 [1 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/ghost_pote
 ntial.png>]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 62.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 62.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 62.
-
 Underfull \hbox (badness 10000) in paragraph at lines 58--68
 
  []
@@ -517,8 +568,7 @@ _utility_diagram.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
 rt2/images/calculate_utility_diagram.png used on input line 71.
 (pdftex.def)             Requested size: 211.34962pt x 174.55214pt.
- [2 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate
-_utility_diagram.png>]
+ [2]
 Underfull \hbox (badness 10000) in paragraph at lines 88--97
 
  []
@@ -544,85 +594,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--97
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
+[3 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/calculate_
+utility_diagram.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 102.
+
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
- [3]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+ [4]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iterations_gr
-aph.png, id=25, 514.92375pt x 318.18875pt>
+aph.png, id=32, 514.92375pt x 318.18875pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteratio
 ns_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
 s_graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/iterations_graph.png used on input line 159.
+rt2/images/iterations_graph.png used on input line 167.
 (pdftex.def)             Requested size: 308.95662pt x 190.9147pt.
- [4]
+
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold_gra
-ph.png, id=31, 602.25pt x 372.39125pt>
+ph.png, id=33, 602.25pt x 372.39125pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshol
 d_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
 _graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/threshold_graph.png used on input line 190.
+rt2/images/threshold_graph.png used on input line 198.
 (pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
  [5 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/iteration
 s_graph.png>]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountfacto
-r_graph.png, id=36, 602.25pt x 372.39125pt>
+r_graph.png, id=38, 602.25pt x 372.39125pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discount
 factor_graph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountf
 actor_graph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/discountfactor_graph.png used on input line 224.
+rt2/images/discountfactor_graph.png used on input line 232.
 (pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
  [6 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/threshold
-_graph.png>]
+_graph.png>] [7 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/imag
+es/discountfactor_graph.png>]
 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_graph.
-png, id=42, 602.25pt x 372.39125pt>
+png, id=48, 602.25pt x 372.39125pt>
 File: /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_g
 raph.png Graphic file (type png)
 
 <use /Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_gr
 aph.png>
 Package pdftex.def Info: /Users/kim-anh/Documents/University/AIN/MDPPacman/repo
-rt2/images/reward_graph.png used on input line 257.
+rt2/images/reward_graph.png used on input line 285.
 (pdftex.def)             Requested size: 361.35278pt x 223.43646pt.
- [7 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/discountf
-actor_graph.png>] [8 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2
-/images/reward_graph.png>] [9] [10] (./report.aux)
+ [8 </Users/kim-anh/Documents/University/AIN/MDPPacman/report2/images/reward_gr
+aph.png>] [9] [10] [11] (./report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6646 strings out of 492995
- 101325 string characters out of 6132705
- 207951 words of memory out of 5000000
- 10065 multiletter control sequences out of 15000+600000
- 8977 words of font info for 32 fonts, out of 8000000 for 9000
+ 7251 strings out of 492995
+ 108251 string characters out of 6132705
+ 218452 words of memory out of 5000000
+ 10652 multiletter control sequences out of 15000+600000
+ 10102 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,10n,37p,1140b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,13n,37p,1140b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (11 pages, 200491 bytes).
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (12 pages, 221052 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
